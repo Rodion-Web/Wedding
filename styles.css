@@ -2501,7 +2501,7 @@ button {
 /* Separate, wide curtain artwork for desktop screens. */
 @media (min-width:621px) {
   .curtain-layer {
-    content: url("assets/curtains-desktop.png");
+    content: url("assets/curtains-beige-desktop.png");
     width: 100vw;
     height: 100svh;
     object-fit: fill;
