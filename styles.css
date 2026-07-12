@@ -1325,3 +1325,20 @@ button {
   .save-date { margin-top:20px; padding:13px 19px; font-size:9px; }
 }
 @media (prefers-reduced-motion:reduce) { .calendar-section { opacity:1; transform:none; transition:none; } }
+
+/* Photorealistic floral border for the calendar */
+.calendar-flowers {
+  position:absolute; z-index:1; top:0; bottom:0; left:0;
+  width:min(37vw,430px); height:100%; object-fit:contain; object-position:left center;
+  opacity:0; filter:drop-shadow(8px 10px 15px rgba(57,49,39,.15));
+  transform:translateX(-45px); transition:opacity 1.2s .15s ease,transform 1.35s .1s cubic-bezier(.2,.75,.2,1);
+  pointer-events:none;
+}
+.calendar-section.is-visible .calendar-flowers { opacity:.92; transform:translateX(0); }
+.calendar-section > :not(.calendar-flowers) { position:relative; z-index:2; }
+@media (max-width:620px) {
+  .calendar-flowers { left:-78px; width:230px; opacity:0; }
+  .calendar-section.is-visible .calendar-flowers { opacity:.62; }
+  .calendar { z-index:3; }
+}
+@media (prefers-reduced-motion:reduce) { .calendar-flowers { opacity:.8; transform:none; transition:none; } }
