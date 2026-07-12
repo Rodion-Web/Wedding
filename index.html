@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#efe8de">
+  <title>Приглашение на свадьбу</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main class="hero">
+    <div class="grain" aria-hidden="true"></div>
+    <section class="reveal-page" aria-label="Свадебное приглашение">
+      <div class="curtain curtain--left" aria-hidden="true"></div>
+      <div class="curtain curtain--right" aria-hidden="true"></div>
+      <div class="chandelier" aria-hidden="true">
+        <img src="assets/chandelier.png" alt="">
+      </div>
+      <div class="invitation-copy">
+        <span>Мы женимся</span>
+        <strong>ROMAN <br>&<br> VICTORIA</strong>
+        <div class="scratch-date" aria-label="Сотрите покрытие, чтобы узнать дату свадьбы">
+          <span class="scratch-circle"><b>26</b><canvas></canvas></span>
+          <i>·</i>
+          <span class="scratch-circle"><b>08</b><canvas></canvas></span>
+          <i>·</i>
+          <span class="scratch-circle"><b>26</b><canvas></canvas></span>
+        </div>
+        <small class="scratch-hint">Сотрите, чтобы узнать дату</small>
+        <a class="scroll-cue" href="#invite-letter">Листайте вниз <b>↓</b></a>
+      </div>
+      <section class="invite-letter" id="invite-letter">
+        <span class="invite-letter__eyebrow">Родные и близкие!</span>
+        <h2>Мы будем счастливы<br>видеть вас рядом</h2>
+        <i></i>
+        <p>С большой радостью приглашаем вас<br>на празднование самого важного события<br>в нашей жизни — нашей свадьбы!
+        </p>
+        <p>Мы очень хотим, чтобы в этот день<br>с нами рядом были самые дорогие нам люди.</p>
+        <time datetime="2026-08-26">26 · 08 · 2026</time>
+      </section>
+    </section>
+    <div class="bird-swarm" aria-hidden="true"></div>
+    <section class="invitation" aria-label="Конверт">
+      <div class="envelope-scene">
+        <span class="envelope-shadow"></span>
+        <span class="envelope">
+          <span class="envelope__back"></span>
+          <span class="envelope__flap">
+            <span class="flap-paper" aria-hidden="true"></span>
+            <span class="flap-jewels" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i>
+              <b></b><b></b>
+            </span>
+            <span class="seal" aria-hidden="true">
+              <img class="seal__image" src="assets/heart-seal-3d.png" alt="">
+              <span class="seal__rim"></span>
+              <span class="seal__texture"></span>
+              <span class="seal__flecks"><i></i><i></i><i></i><i></i></span>
+            </span>
+          </span>
+          <span class="envelope__pocket envelope__pocket--left"></span>
+          <span class="envelope__pocket envelope__pocket--right"></span>
+          <span class="envelope__pocket envelope__pocket--bottom"></span>
+        </span>
+        <button class="open-button" type="button">Открыть приглашение</button>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
