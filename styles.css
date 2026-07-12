@@ -1244,7 +1244,7 @@ button {
   display: block;
   position: absolute;
   z-index: 7;
-  top: -2%;
+  top: 10%;
   left: 50%;
   width: auto;
   height: min(58svh, 650px);
