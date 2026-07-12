@@ -1273,7 +1273,7 @@ button {
   }
 
   .reveal-page>.chandelier {
-    top: 0;
+    top: 30px;
     height: min(51svh, 500px);
   }
 
@@ -2296,5 +2296,238 @@ button {
     opacity: .8;
     transform: none;
     transition: none;
+  }
+}
+
+/* Beige round wax seal with a raised pink heart */
+.envelope-scene:not(.is-open) .seal {
+  animation: seal-blush-breathe 2.6s ease-in-out infinite;
+}
+
+@keyframes seal-blush-breathe {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 8px 8px rgba(69, 53, 42, .22)) drop-shadow(0 0 7px rgba(248, 210, 207, .55)) drop-shadow(0 0 15px rgba(224, 169, 166, .28));
+  }
+
+  50% {
+    filter: drop-shadow(0 9px 9px rgba(69, 53, 42, .24)) drop-shadow(0 0 11px rgba(255, 225, 222, .85)) drop-shadow(0 0 24px rgba(224, 169, 166, .48));
+  }
+}
+
+.envelope-scene:not(.is-open) .seal__image {
+  filter: drop-shadow(0 10px 8px rgba(70, 52, 42, .3));
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .envelope-scene:not(.is-open) .seal {
+    animation: none;
+  }
+}
+
+/* Floral decoration disabled across all content sections */
+.floral,
+.calendar-flowers {
+  display: none !important;
+}
+
+/* Warm beige backdrop only inside the curtain opening */
+.reveal-page {
+  background: #e8dcc9;
+}
+
+.reveal-page::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;
+  clip-path: polygon(50% 0, 100% 80%, 100% 100%, 0 100%, 0 80%);
+  background: radial-gradient(circle at 50% 30%, #f7f0e5 0, #eadfce 48%, #dfceb6 100%);
+  pointer-events: none;
+}
+
+@media (max-width:620px) {
+  .reveal-page::after {
+    clip-path: polygon(50% 0, 100% 60%, 100% 100%, 0 100%, 0 60%);
+  }
+}
+
+/* Full beige background with separately clipped curtain panels */
+.reveal-page {
+  background: radial-gradient(circle at 50% 28%, #f7f0e5 0, #eadfce 48%, #dfceb6 100%);
+}
+
+.reveal-page::before,
+.reveal-page::after {
+  display: none;
+}
+
+.reveal-page>.curtain {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  background: url("assets/wedding-curtains-wide.png") center top / 100% auto no-repeat;
+  filter: none;
+  opacity: 0;
+  transform: none;
+  pointer-events: none;
+}
+
+.reveal-page>.curtain::after {
+  display: none;
+}
+
+.reveal-page>.curtain--left {
+  left: 0;
+  clip-path: polygon(0 0, 50% 0, 0 82%);
+}
+
+.reveal-page>.curtain--right {
+  right: 0;
+  clip-path: polygon(50% 0, 100% 0, 100% 82%);
+}
+
+.show-invitation .reveal-page>.curtain--left {
+  animation: curtain-left-in .9s ease-out both;
+}
+
+.show-invitation .reveal-page>.curtain--right {
+  animation: curtain-right-in .9s ease-out both;
+}
+
+@keyframes curtain-left-in {
+  from {
+    opacity: 0;
+    transform: translateX(-5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes curtain-right-in {
+  from {
+    opacity: 0;
+    transform: translateX(5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width:620px) {
+  .reveal-page>.curtain {
+    background-size: auto 62%;
+  }
+
+  .reveal-page>.curtain--left {
+    clip-path: polygon(0 0, 50% 0, 0 61%);
+  }
+
+  .reveal-page>.curtain--right {
+    clip-path: polygon(50% 0, 100% 0, 100% 61%);
+  }
+}
+
+/* True independent scene layers: background, transparent curtains, content */
+.reveal-page {
+  isolation: isolate;
+  background: none;
+}
+
+.reveal-page::before,
+.reveal-page::after {
+  display: none;
+}
+
+.scene-background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  min-height: 100svh;
+  background: radial-gradient(circle at 50% 28%, #f7f0e5 0, #eadfce 48%, #dfceb6 100%);
+  pointer-events: none;
+}
+
+.curtain-layer {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  opacity: 0;
+  filter: drop-shadow(0 8px 7px rgba(68, 57, 47, .13));
+  transform: translate(-50%, -5%);
+  pointer-events: none;
+}
+
+.show-invitation .curtain-layer {
+  animation: curtain-layer-in .9s cubic-bezier(.2, .72, .24, 1) both;
+  z-index: 100;
+}
+
+@keyframes curtain-layer-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -7%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width:620px) {
+  .curtain-layer {
+    width: auto;
+    height: 61svh;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .curtain-layer {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .show-invitation .curtain-layer {
+    animation: none;
+  }
+}
+
+/* White outer wax with a warm beige heart */
+.envelope-scene:not(.is-open) .seal {
+  animation: seal-white-beige-breathe 2.7s ease-in-out infinite;
+}
+
+@keyframes seal-white-beige-breathe {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 8px 8px rgba(65, 53, 43, .2)) drop-shadow(0 0 7px rgba(255, 250, 237, .62)) drop-shadow(0 0 14px rgba(218, 194, 157, .24));
+  }
+
+  50% {
+    filter: drop-shadow(0 9px 9px rgba(65, 53, 43, .22)) drop-shadow(0 0 11px rgba(255, 253, 245, .9)) drop-shadow(0 0 23px rgba(218, 194, 157, .42));
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .envelope-scene:not(.is-open) .seal {
+    animation: none;
   }
 }
