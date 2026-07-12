@@ -129,3 +129,13 @@ document.querySelectorAll('.scratch-circle').forEach((circle) => {
 
   paintCover();
 });
+
+const inviteLetter = document.querySelector('.invite-letter');
+const letterObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    inviteLetter.classList.add('is-visible');
+    letterObserver.disconnect();
+  }
+}, { threshold: 0.22 });
+
+letterObserver.observe(inviteLetter);

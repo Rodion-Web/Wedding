@@ -1177,3 +1177,118 @@ button {
   .scratch-circle { width:62px; }
   .scratch-date { margin-top:9px; }
 }
+
+/* Animated second section and floral edge decoration */
+.invite-letter {
+  opacity:.35;
+  transform:translateY(46px) scale(.985);
+  transition:opacity 1s ease,transform 1.15s cubic-bezier(.2,.75,.2,1);
+}
+.invite-letter.is-visible { opacity:1; transform:translateY(0) scale(1); }
+.invite-letter > :not(.floral) { opacity:0; transform:translateY(18px); transition:opacity .75s ease,transform .85s ease; }
+.invite-letter.is-visible > :not(.floral) { opacity:1; transform:translateY(0); }
+.invite-letter.is-visible > :nth-child(3) { transition-delay:.18s; }
+.invite-letter.is-visible > :nth-child(4) { transition-delay:.28s; }
+.invite-letter.is-visible > :nth-child(5) { transition-delay:.38s; }
+.invite-letter.is-visible > :nth-child(6) { transition-delay:.48s; }
+.invite-letter.is-visible > :nth-child(7) { transition-delay:.58s; }
+.invite-letter.is-visible > :nth-child(8) { transition-delay:.68s; }
+
+.floral {
+  position:absolute;
+  z-index:2;
+  top:8%;
+  bottom:8%;
+  width:clamp(90px,15vw,210px);
+  opacity:0;
+  transform:translateX(-28px);
+  transition:opacity 1.2s .2s ease,transform 1.4s .15s cubic-bezier(.2,.75,.2,1);
+  pointer-events:none;
+}
+.floral--left { left:1.5%; }
+.floral--right { right:1.5%; transform:translateX(28px) scaleX(-1); }
+.invite-letter.is-visible .floral { opacity:.72; transform:translateX(0); }
+.invite-letter.is-visible .floral--right { transform:translateX(0) scaleX(-1); }
+.floral::before {
+  content:"";
+  position:absolute;
+  left:46%;
+  top:4%;
+  width:2px;
+  height:92%;
+  border-radius:50%;
+  background:linear-gradient(180deg,transparent,#78866a 12% 88%,transparent);
+  transform:rotate(7deg);
+  box-shadow:1px 0 rgba(255,255,255,.6);
+}
+.floral::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse at 31% 19%,#8fa17e 0 5%,transparent 5.8%),
+    radial-gradient(ellipse at 67% 31%,#788e69 0 6%,transparent 6.8%),
+    radial-gradient(ellipse at 29% 46%,#91a483 0 6%,transparent 6.8%),
+    radial-gradient(ellipse at 70% 61%,#7d936e 0 5%,transparent 5.8%),
+    radial-gradient(ellipse at 34% 77%,#92a983 0 6%,transparent 6.8%);
+  filter:drop-shadow(0 2px 1px rgba(55,65,48,.14));
+}
+.floral i {
+  position:absolute;
+  z-index:2;
+  width:clamp(25px,3.2vw,43px);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%,#c79c69 0 8%,transparent 9%),
+    conic-gradient(from 12deg,#fff 0 12%,#eadbd5 13% 19%,#fff 20% 32%,#e5d1cc 33% 39%,#fff 40% 52%,#ead8d1 53% 59%,#fff 60% 72%,#e4cdc8 73% 79%,#fff 80% 92%,#e8d5cf 93%);
+  box-shadow:0 5px 9px rgba(77,59,49,.13),inset 0 2px 3px rgba(255,255,255,.8);
+}
+.floral i:nth-child(1){left:31%;top:8%}.floral i:nth-child(2){left:49%;top:27%;transform:scale(.7)}
+.floral i:nth-child(3){left:20%;top:44%;transform:scale(.85)}.floral i:nth-child(4){left:53%;top:65%;transform:scale(.62)}
+.floral i:nth-child(5){left:26%;top:83%;transform:scale(.78)}
+
+@media (max-width:620px) {
+  .floral { width:72px; opacity:0; }
+  .invite-letter.is-visible .floral { opacity:.42; }
+  .floral--left { left:-20px; }
+  .floral--right { right:-20px; }
+  .floral i { width:25px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .invite-letter,.invite-letter > :not(.floral),.floral { opacity:1; transform:none; transition:none; }
+}
+
+/* Reference-based transparent floral artwork */
+.floral::before,
+.floral::after,
+.floral i { display:none; }
+.floral {
+  background-repeat:no-repeat;
+  filter:drop-shadow(0 10px 14px rgba(66,55,44,.12));
+}
+.floral--left {
+  top:auto;
+  bottom:0;
+  left:0;
+  width:min(42vw,460px);
+  height:78%;
+  background-image:url("assets/floral-watercolor.png");
+  background-position:left bottom;
+  background-size:contain;
+}
+.floral--right {
+  top:0;
+  right:0;
+  bottom:auto;
+  width:min(41vw,450px);
+  height:67%;
+  background-image:url("assets/floral-peonies.png");
+  background-position:left top;
+  background-size:contain;
+}
+@media (max-width:620px) {
+  .floral--left { left:-54px; width:235px; height:57%; }
+  .floral--right { right:-50px; width:225px; height:48%; }
+}
