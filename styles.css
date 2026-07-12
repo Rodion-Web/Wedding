@@ -2509,6 +2509,65 @@ button {
   }
 }
 
+/* Mobile hero: fuller curtain frame and a compact single-line composition. */
+@media (max-width:620px) {
+  .curtain-layer {
+    width: auto;
+    height: 69svh;
+    max-width: none;
+  }
+
+  .reveal-page>.chandelier {
+    top: 7svh;
+    height: min(55svh, 510px);
+  }
+
+  .invitation-copy {
+    top: 63%;
+    width: 100%;
+    padding-inline: 8px;
+  }
+
+  .invitation-copy>span {
+    font-size: 8px;
+  }
+
+  .invitation-copy>strong {
+    width: 100%;
+    margin: 7px 0 8px;
+    font-size: clamp(30px, 9.7vw, 42px);
+    line-height: .9;
+    white-space: nowrap;
+  }
+
+  .invitation-copy>strong br {
+    display: none;
+  }
+
+  .scratch-date {
+    width: min(94vw, 440px);
+    justify-content: space-between;
+    gap: 0;
+    margin-top: 8px;
+  }
+
+  .scratch-circle {
+    width: clamp(64px, 19vw, 76px);
+  }
+
+  .scratch-date>i {
+    flex: 0 0 auto;
+  }
+
+  .scratch-hint {
+    margin-top: 9px;
+  }
+
+  .scroll-cue {
+    margin-top: 10px;
+  }
+}
+
 @media (prefers-reduced-motion:reduce) {
   .curtain-layer {
     opacity: 1;
