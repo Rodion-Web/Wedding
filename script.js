@@ -139,3 +139,32 @@ const letterObserver = new IntersectionObserver(([entry]) => {
 }, { threshold: 0.22 });
 
 letterObserver.observe(inviteLetter);
+
+const calendarSection = document.querySelector('.calendar-section');
+const calendarObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    calendarSection.classList.add('is-visible');
+    calendarObserver.disconnect();
+  }
+}, { threshold: 0.2 });
+calendarObserver.observe(calendarSection);
+
+document.querySelector('.save-date').addEventListener('click', () => {
+  const eventData = [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Roman and Victoria Wedding//RU',
+    'CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
+    'UID:roman-victoria-wedding-20260826@wedding-invitation',
+    'DTSTAMP:20260801T120000Z','DTSTART;VALUE=DATE:20260826','DTEND;VALUE=DATE:20260827',
+    'SUMMARY:Свадьба Романа и Виктории',
+    'DESCRIPTION:Будем счастливы разделить этот день с вами!',
+    'STATUS:CONFIRMED','END:VEVENT','END:VCALENDAR'
+  ].join('\r\n');
+  const url = URL.createObjectURL(new Blob([eventData], { type:'text/calendar;charset=utf-8' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'roman-victoria-wedding-26-08-2026.ics';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
