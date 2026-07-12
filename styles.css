@@ -2498,6 +2498,17 @@ button {
   }
 }
 
+/* Separate, wide curtain artwork for desktop screens. */
+@media (min-width:621px) {
+  .curtain-layer {
+    content: url("assets/curtains-desktop.png");
+    width: 100vw;
+    height: 100svh;
+    object-fit: fill;
+    object-position: top center;
+  }
+}
+
 @media (prefers-reduced-motion:reduce) {
   .curtain-layer {
     opacity: 1;
