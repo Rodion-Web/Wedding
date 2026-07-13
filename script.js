@@ -194,6 +194,15 @@ const guestFormObserver = new IntersectionObserver(([entry]) => {
 }, { threshold: 0.12 });
 guestFormObserver.observe(guestFormSection);
 
+const closingSection = document.querySelector('.closing-section');
+const closingObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    closingSection.classList.add('is-visible');
+    closingObserver.disconnect();
+  }
+}, { threshold: 0.25 });
+closingObserver.observe(closingSection);
+
 const guestForm = document.querySelector('.guest-form');
 const companionField = guestForm.querySelector('.guest-companion');
 const companionInput = companionField.querySelector('input');

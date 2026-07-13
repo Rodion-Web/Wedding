@@ -2745,6 +2745,199 @@ button {
   }
 }
 
+/* Final screen */
+.closing-section {
+  position: relative;
+  z-index: 8;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 72px 24px;
+  overflow: hidden;
+  color: #565b59;
+  background:
+    radial-gradient(circle at 50% 44%, rgba(255, 255, 255, .94), transparent 34%),
+    linear-gradient(150deg, #e4d6c4, #f8f4ed 48%, #e7dbcb);
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 1.1s ease, transform 1.25s cubic-bezier(.2, .75, .2, 1);
+}
+
+.closing-section::before,
+.closing-section::after {
+  content: "";
+  position: absolute;
+  width: min(62vw, 760px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(145, 118, 90, .15);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.closing-section::before {
+  top: -47%;
+  left: -25%;
+  box-shadow: inset 0 0 0 38px rgba(255, 255, 255, .055);
+}
+
+.closing-section::after {
+  right: -27%;
+  bottom: -50%;
+  box-shadow: inset 0 0 0 38px rgba(255, 255, 255, .065);
+}
+
+.closing-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.closing-section__content {
+  position: relative;
+  z-index: 1;
+  width: min(90vw, 760px);
+  padding: clamp(58px, 8vw, 94px) clamp(24px, 6vw, 70px);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(24px) scale(.98);
+  transition: opacity 1s .16s ease, transform 1.15s .1s cubic-bezier(.2, .75, .2, 1);
+}
+
+.closing-section__content::before,
+.closing-section__content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.closing-section__content::before {
+  border-top: 1px solid rgba(146, 118, 90, .28);
+  border-bottom: 1px solid rgba(146, 118, 90, .28);
+}
+
+.closing-section__content::after {
+  inset: 15px;
+  border-left: 1px solid rgba(146, 118, 90, .13);
+  border-right: 1px solid rgba(146, 118, 90, .13);
+}
+
+.closing-section.is-visible .closing-section__content {
+  opacity: 1;
+  transform: none;
+}
+
+.closing-section__monogram {
+  display: block;
+  color: rgba(139, 112, 86, .33);
+  font: italic 500 clamp(43px, 5vw, 64px)/1 "Cormorant Garamond", Georgia, serif;
+  letter-spacing: .08em;
+}
+
+.closing-section__monogram i {
+  padding: 0 .1em;
+  font-size: .75em;
+  font-weight: 400;
+}
+
+.closing-section__ornament {
+  position: relative;
+  display: block;
+  width: 128px;
+  height: 24px;
+  margin: 17px auto 31px;
+}
+
+.closing-section__ornament::before,
+.closing-section__ornament::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #a98c6f);
+}
+
+.closing-section__ornament::before { left: 0; }
+.closing-section__ornament::after { right: 0; transform: scaleX(-1); }
+
+.closing-section__ornament i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(142, 112, 83, .72);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 8px 0 0 -1px #f5ede3, 8px 0 0 0 rgba(142, 112, 83, .62);
+}
+
+.closing-section p {
+  margin: 0 0 11px;
+  color: #817568;
+  font: italic 500 clamp(27px, 3vw, 38px)/1.1 "Cormorant Garamond", Georgia, serif;
+}
+
+.closing-section h2 {
+  margin: 0;
+  color: #596363;
+  font: italic 500 clamp(48px, 7vw, 88px)/.94 "Cormorant Garamond", Georgia, serif;
+}
+
+.closing-section h2 i {
+  display: inline-block;
+  padding: 0 .09em;
+  color: #8f765e;
+  font-size: .72em;
+  font-weight: 400;
+}
+
+@media (max-width:620px) {
+  .closing-section {
+    padding: 50px 18px;
+  }
+
+  .closing-section__content {
+    width: min(92vw, 430px);
+    padding: 62px 21px;
+  }
+
+  .closing-section__monogram {
+    font-size: 46px;
+  }
+
+  .closing-section__ornament {
+    margin-bottom: 27px;
+  }
+
+  .closing-section p {
+    font-size: 29px;
+  }
+
+  .closing-section h2 {
+    font-size: clamp(43px, 13vw, 57px);
+  }
+
+  .closing-section h2 i {
+    display: block;
+    padding: .06em 0;
+  }
+
+  .closing-section::before,
+  .closing-section::after {
+    width: 105vw;
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .closing-section,
+  .closing-section__content {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Photorealistic 3D heart seal asset */
 .seal {
   overflow: visible;
