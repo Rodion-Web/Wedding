@@ -135,6 +135,60 @@
           </figure>
         </div>
       </section>
+      <section class="guest-form-section" id="guest-form-section" aria-labelledby="guest-form-title">
+        <div class="guest-form-card">
+          <span class="guest-form-card__eyebrow">Пожалуйста, ответьте до торжества</span>
+          <h2 id="guest-form-title">Анкета гостя</h2>
+          <p class="guest-form-card__intro">Ваши ответы помогут нам сделать этот вечер комфортным для каждого.</p>
+
+          <form class="guest-form">
+            <label class="guest-form__website" aria-hidden="true">
+              <span>Не заполняйте это поле</span>
+              <input type="text" name="website" tabindex="-1" autocomplete="off">
+            </label>
+            <label class="guest-form__name">
+              <span>Ваше имя и фамилия</span>
+              <input type="text" name="guestName" autocomplete="name" placeholder="Введите имя" required>
+            </label>
+
+            <fieldset>
+              <legend>Сможете ли вы присутствовать?</legend>
+              <div class="guest-form__options guest-form__options--two">
+                <label><input type="radio" name="attendance" value="yes" required><span>Да, буду</span></label>
+                <label><input type="radio" name="attendance" value="no"><span>К сожалению, нет</span></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="guest-company">
+              <legend>Вы будете один или с кем-то?</legend>
+              <div class="guest-form__options guest-form__options--two">
+                <label><input type="radio" name="company" value="alone" required><span>Буду один</span></label>
+                <label><input type="radio" name="company" value="withGuest"><span>С сопровождающим</span></label>
+              </div>
+              <label class="guest-companion" hidden>
+                <span>Имя сопровождающего</span>
+                <input type="text" name="companionName" autocomplete="off" placeholder="Введите имя">
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Какие напитки вы предпочитаете?</legend>
+              <small>Можно выбрать несколько вариантов</small>
+              <div class="guest-form__options guest-form__options--drinks">
+                <label><input type="checkbox" name="drinks" value="whiteWine"><span>Вино белое</span></label>
+                <label><input type="checkbox" name="drinks" value="redWine"><span>Вино красное</span></label>
+                <label><input type="checkbox" name="drinks" value="pomegranateWine"><span>Вино гранатовое</span></label>
+                <label><input type="checkbox" name="drinks" value="vodka"><span>Водка</span></label>
+                <label><input type="checkbox" name="drinks" value="whiskey"><span>Виски</span></label>
+                <label><input type="checkbox" name="drinks" value="none"><span>Не пью алкоголь</span></label>
+              </div>
+            </fieldset>
+
+            <button class="guest-form__submit" type="submit">Отправить ответ</button>
+            <p class="guest-form__status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
     </section>
     <div class="bird-swarm" aria-hidden="true"></div>
     <section class="invitation" aria-label="Конверт">

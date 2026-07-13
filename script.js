@@ -185,6 +185,87 @@ const locationObserver = new IntersectionObserver(([entry]) => {
 }, { threshold: 0.2 });
 locationObserver.observe(locationSection);
 
+const guestFormSection = document.querySelector('.guest-form-section');
+const guestFormObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    guestFormSection.classList.add('is-visible');
+    guestFormObserver.disconnect();
+  }
+}, { threshold: 0.12 });
+guestFormObserver.observe(guestFormSection);
+
+const guestForm = document.querySelector('.guest-form');
+const companionField = guestForm.querySelector('.guest-companion');
+const companionInput = companionField.querySelector('input');
+const companyInputs = guestForm.querySelectorAll('input[name="company"]');
+const drinkInputs = guestForm.querySelectorAll('input[name="drinks"]');
+const noAlcoholInput = guestForm.querySelector('input[name="drinks"][value="none"]');
+const formStatus = guestForm.querySelector('.guest-form__status');
+const guestSubmitButton = guestForm.querySelector('.guest-form__submit');
+
+companyInputs.forEach((input) => {
+  input.addEventListener('change', () => {
+    const withGuest = input.value === 'withGuest' && input.checked;
+    companionField.hidden = !withGuest;
+    companionInput.required = withGuest;
+    if (!withGuest) companionInput.value = '';
+  });
+});
+
+drinkInputs.forEach((input) => {
+  input.addEventListener('change', () => {
+    if (input === noAlcoholInput && input.checked) {
+      drinkInputs.forEach((drink) => { if (drink !== noAlcoholInput) drink.checked = false; });
+    } else if (input.checked) {
+      noAlcoholInput.checked = false;
+    }
+  });
+});
+
+guestForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  if (!guestForm.reportValidity()) return;
+
+  const formData = new FormData(guestForm);
+  const response = {
+    guestName: formData.get('guestName'),
+    attendance: formData.get('attendance'),
+    company: formData.get('company'),
+    companionName: formData.get('companionName') || '',
+    drinks: formData.getAll('drinks'),
+    website: formData.get('website') || '',
+    submittedAt: new Date().toISOString()
+  };
+
+  guestSubmitButton.disabled = true;
+  guestSubmitButton.textContent = 'Отправляем…';
+  formStatus.textContent = '';
+  guestForm.classList.remove('is-submitted', 'has-error');
+
+  try {
+    const serverResponse = await fetch('api/guest-response.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(response)
+    });
+    const result = await serverResponse.json().catch(() => ({}));
+
+    if (!serverResponse.ok || !result.ok) {
+      throw new Error(result.message || 'Сервер не смог сохранить ответ.');
+    }
+
+    localStorage.setItem('romanVictoriaGuestResponse', JSON.stringify(response));
+    formStatus.textContent = 'Спасибо! Ваш ответ отправлен и сохранён.';
+    guestForm.classList.add('is-submitted');
+  } catch (error) {
+    formStatus.textContent = error.message || 'Не удалось отправить ответ. Попробуйте ещё раз.';
+    guestForm.classList.add('has-error');
+  } finally {
+    guestSubmitButton.disabled = false;
+    guestSubmitButton.textContent = 'Отправить ответ';
+  }
+});
+
 document.querySelector('.save-date').addEventListener('click', () => {
   const eventData = [
     'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Roman and Victoria Wedding//RU',
