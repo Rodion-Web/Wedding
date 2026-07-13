@@ -70,28 +70,31 @@
       <section class="schedule-section" id="schedule-section" aria-labelledby="schedule-title">
         <span class="schedule-section__eyebrow">26 августа 2026</span>
         <h2 id="schedule-title">Тайминг</h2>
-        <ol class="schedule-list">
-          <li>
-            <time datetime="16:00">16:00</time>
-            <span>Фуршет</span>
-          </li>
-          <li>
-            <time datetime="16:30">16:30</time>
-            <span>Начало мужской части церемонии</span>
-          </li>
-          <li>
-            <time datetime="17:00">17:00</time>
-            <span>Начало церемонии хупы</span>
-          </li>
-          <li>
-            <time datetime="17:30">17:30</time>
-            <span>Начало банкета</span>
-          </li>
-          <li>
-            <time datetime="22:00">22:00</time>
-            <span>Торт</span>
-          </li>
-        </ol>
+        <div class="schedule-timeline">
+          <span class="schedule-progress" aria-hidden="true"><i></i></span>
+          <ol class="schedule-list">
+            <li>
+              <time datetime="16:00">16:00</time>
+              <span>Фуршет</span>
+            </li>
+            <li>
+              <time datetime="16:30">16:30</time>
+              <span>Начало мужской части церемонии</span>
+            </li>
+            <li>
+              <time datetime="17:00">17:00</time>
+              <span>Начало церемонии хупы</span>
+            </li>
+            <li>
+              <time datetime="17:30">17:30</time>
+              <span>Начало банкета</span>
+            </li>
+            <li>
+              <time datetime="22:00">22:00</time>
+              <span>Торт</span>
+            </li>
+          </ol>
+        </div>
       </section>
       <section class="dress-code-section" id="dress-code-section" aria-labelledby="dress-code-title">
         <div class="dress-code__card">
@@ -186,6 +189,13 @@
 
             <button class="guest-form__submit" type="submit">Отправить ответ</button>
             <p class="guest-form__status" role="status" aria-live="polite"></p>
+            <div class="guest-form__success" role="status" aria-live="polite" aria-hidden="true">
+              <span class="guest-form__success-check" aria-hidden="true"><i></i></span>
+              <small>Ответ получен</small>
+              <h3>Спасибо, <b></b>!</h3>
+              <p>Мы получили вашу анкету и сохранили все пожелания.</p>
+              <span class="guest-form__success-monogram" aria-hidden="true">V <i>&amp;</i> R</span>
+            </div>
           </form>
         </div>
       </section>

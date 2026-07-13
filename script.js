@@ -158,6 +158,43 @@ const scheduleObserver = new IntersectionObserver(([entry]) => {
 }, { threshold: 0.2 });
 scheduleObserver.observe(scheduleSection);
 
+const scheduleTimeline = scheduleSection.querySelector('.schedule-timeline');
+const scheduleItems = [...scheduleSection.querySelectorAll('.schedule-list li')];
+const revealPage = document.querySelector('.reveal-page');
+let scheduleScrollFrame;
+
+const updateScheduleProgress = () => {
+  scheduleScrollFrame = undefined;
+  if (!scheduleItems.length) return;
+
+  const firstRect = scheduleItems[0].getBoundingClientRect();
+  const lastRect = scheduleItems[scheduleItems.length - 1].getBoundingClientRect();
+  const firstCenter = firstRect.top + firstRect.height / 2;
+  const lastCenter = lastRect.top + lastRect.height / 2;
+  const trackLength = Math.max(lastCenter - firstCenter, 0);
+  const viewportMarker = window.innerHeight * .52;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const travelled = prefersReducedMotion
+    ? trackLength
+    : Math.min(Math.max(viewportMarker - firstCenter, 0), trackLength);
+
+  scheduleTimeline.style.setProperty('--schedule-track-height', `${travelled}px`);
+  scheduleItems.forEach((item) => {
+    const rect = item.getBoundingClientRect();
+    const center = rect.top + rect.height / 2;
+    item.classList.toggle('is-passed', prefersReducedMotion || center <= viewportMarker);
+  });
+};
+
+const requestScheduleProgress = () => {
+  if (scheduleScrollFrame !== undefined) return;
+  scheduleScrollFrame = window.requestAnimationFrame(updateScheduleProgress);
+};
+
+revealPage.addEventListener('scroll', requestScheduleProgress, { passive: true });
+window.addEventListener('resize', requestScheduleProgress);
+requestScheduleProgress();
+
 const dressCodeSection = document.querySelector('.dress-code-section');
 const dressCodeObserver = new IntersectionObserver(([entry]) => {
   if (entry.isIntersecting) {
@@ -211,6 +248,8 @@ const drinkInputs = guestForm.querySelectorAll('input[name="drinks"]');
 const noAlcoholInput = guestForm.querySelector('input[name="drinks"][value="none"]');
 const formStatus = guestForm.querySelector('.guest-form__status');
 const guestSubmitButton = guestForm.querySelector('.guest-form__submit');
+const guestSuccess = guestForm.querySelector('.guest-form__success');
+const guestSuccessName = guestSuccess.querySelector('h3 b');
 
 companyInputs.forEach((input) => {
   input.addEventListener('change', () => {
@@ -249,6 +288,7 @@ guestForm.addEventListener('submit', async (event) => {
   guestSubmitButton.disabled = true;
   guestSubmitButton.textContent = 'Отправляем…';
   formStatus.textContent = '';
+  guestSuccess.setAttribute('aria-hidden', 'true');
   guestForm.classList.remove('is-submitted', 'has-error');
 
   try {
@@ -264,7 +304,8 @@ guestForm.addEventListener('submit', async (event) => {
     }
 
     localStorage.setItem('romanVictoriaGuestResponse', JSON.stringify(response));
-    formStatus.textContent = 'Спасибо! Ваш ответ отправлен и сохранён.';
+    guestSuccessName.textContent = response.guestName.trim().split(/\s+/)[0];
+    guestSuccess.setAttribute('aria-hidden', 'false');
     guestForm.classList.add('is-submitted');
   } catch (error) {
     formStatus.textContent = error.message || 'Не удалось отправить ответ. Попробуйте ещё раз.';
