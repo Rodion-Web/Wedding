@@ -3803,6 +3803,7 @@ button {
 }
 
 .calendar__days {
+  position: relative;
   row-gap: 8px;
 }
 
@@ -3818,19 +3819,40 @@ button {
 
 .wedding-day {
   z-index: 1;
+}
+
+.calendar__days>span {
+  transition: color .24s ease, transform .24s ease, font-weight .24s ease;
+}
+
+.calendar__days>span.is-heart-active {
+  z-index: 4;
   color: #9f343e;
-  font-weight: 700 !important;
+  font-weight: 700;
+  transform: scale(1.08);
 }
 
 .wedding-day::before {
-  content: "♡";
+  content: none;
+}
+
+.calendar-heart {
   position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: calc(100% / 7);
+  height: 44px;
+  display: grid;
+  place-items: center;
   color: #b83e49;
   font: 400 58px/1 Georgia, serif;
-  transform: translate(-50%, -49%);
+  font-style: normal;
+  opacity: 0;
+  filter: drop-shadow(0 3px 4px rgba(129, 43, 52, .2));
+  pointer-events: none;
+  will-change: transform, opacity;
+  transition: opacity .16s ease;
 }
 
 .save-date {
@@ -3902,6 +3924,11 @@ button {
     font-size: 51px;
   }
 
+  .calendar-heart {
+    height: 39px;
+    font-size: 51px;
+  }
+
   .save-date {
     margin-top: 20px;
     padding: 13px 19px;
@@ -3914,6 +3941,10 @@ button {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .calendar-heart {
+    opacity: 1;
   }
 }
 
