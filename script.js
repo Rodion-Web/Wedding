@@ -149,6 +149,42 @@ const calendarObserver = new IntersectionObserver(([entry]) => {
 }, { threshold: 0.2 });
 calendarObserver.observe(calendarSection);
 
+const scheduleSection = document.querySelector('.schedule-section');
+const scheduleObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    scheduleSection.classList.add('is-visible');
+    scheduleObserver.disconnect();
+  }
+}, { threshold: 0.2 });
+scheduleObserver.observe(scheduleSection);
+
+const dressCodeSection = document.querySelector('.dress-code-section');
+const dressCodeObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    dressCodeSection.classList.add('is-visible');
+    dressCodeObserver.disconnect();
+  }
+}, { threshold: 0.2 });
+dressCodeObserver.observe(dressCodeSection);
+
+const detailsSection = document.querySelector('.details-section');
+const detailsObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    detailsSection.classList.add('is-visible');
+    detailsObserver.disconnect();
+  }
+}, { threshold: 0.2 });
+detailsObserver.observe(detailsSection);
+
+const locationSection = document.querySelector('.location-section');
+const locationObserver = new IntersectionObserver(([entry]) => {
+  if (entry.isIntersecting) {
+    locationSection.classList.add('is-visible');
+    locationObserver.disconnect();
+  }
+}, { threshold: 0.2 });
+locationObserver.observe(locationSection);
+
 document.querySelector('.save-date').addEventListener('click', () => {
   const eventData = [
     'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Roman and Victoria Wedding//RU',
