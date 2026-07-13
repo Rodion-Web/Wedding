@@ -199,7 +199,8 @@ const dressCodeSection = document.querySelector('.dress-code-section');
 const dressCodeObserver = new IntersectionObserver(([entry]) => {
   if (entry.isIntersecting) {
     dressCodeSection.classList.add('is-visible');
-    dressCodeObserver.disconnect();
+  } else {
+    dressCodeSection.classList.remove('is-visible');
   }
 }, { threshold: 0.2 });
 dressCodeObserver.observe(dressCodeSection);
