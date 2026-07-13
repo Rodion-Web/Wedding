@@ -144,13 +144,8 @@ const revealPage = document.querySelector('.reveal-page');
 const calendarSection = document.querySelector('.calendar-section');
 const calendarDays = calendarSection.querySelector('.calendar__days');
 const calendarHeart = calendarSection.querySelector('.calendar-heart');
-const calendarDayCells = [...calendarDays.querySelectorAll('span')];
+const calendarHeartPath = calendarHeart.querySelector('path');
 const calendarWeddingDay = calendarSection.querySelector('.wedding-day');
-const calendarRoute = calendarDayCells
-  .filter((cell) => cell !== calendarWeddingDay)
-  .sort(() => Math.random() - .5)
-  .slice(0, 8)
-  .concat(calendarWeddingDay);
 let calendarScrollFrame;
 
 const getCalendarHeartPosition = (cell) => ({
@@ -164,28 +159,15 @@ const updateCalendarHeartProgress = () => {
   const sectionRect = calendarSection.getBoundingClientRect();
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const startAt = window.innerHeight * .45;
-  const finishAt = window.innerHeight * -.08;
+  const finishAt = 0;
   const rawProgress = (startAt - sectionRect.top) / (startAt - finishAt);
   const progress = prefersReducedMotion ? 1 : Math.min(Math.max(rawProgress, 0), 1);
-  const routeProgress = progress * (calendarRoute.length - 1);
-  const fromIndex = Math.min(Math.floor(routeProgress), calendarRoute.length - 1);
-  const toIndex = Math.min(fromIndex + 1, calendarRoute.length - 1);
-  const localProgress = routeProgress - fromIndex;
-  const from = getCalendarHeartPosition(calendarRoute[fromIndex]);
-  const to = getCalendarHeartPosition(calendarRoute[toIndex]);
-  const x = from.x + (to.x - from.x) * localProgress;
-  const y = from.y + (to.y - from.y) * localProgress;
-  const scale = .9 + Math.sin(localProgress * Math.PI) * .1;
+  const position = getCalendarHeartPosition(calendarWeddingDay);
+  const scale = .9 + progress * .1;
 
-  calendarHeart.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+  calendarHeart.style.transform = `translate3d(${position.x}px, ${position.y}px, 0) scale(${scale})`;
   calendarHeart.style.opacity = progress > .01 ? '1' : '0';
-
-  const activeCell = progress > .01
-    ? calendarRoute[Math.min(Math.round(routeProgress), calendarRoute.length - 1)]
-    : null;
-  calendarDayCells.forEach((cell) => {
-    cell.classList.toggle('is-heart-active', cell === activeCell);
-  });
+  calendarHeartPath.style.strokeDashoffset = String(1 - progress);
 };
 
 const requestCalendarHeartProgress = () => {
