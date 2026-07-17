@@ -11,7 +11,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260717-30">
 </head>
 
 <body>
@@ -19,32 +19,27 @@
     <div class="grain" aria-hidden="true"></div>
     <section class="reveal-page" aria-label="Свадебное приглашение">
       <div class="scene-background" aria-hidden="true"></div>
-      <img class="curtain-layer" src="assets/curtains-beige-soft-mobile-v2.png" alt="" aria-hidden="true">
-      <div class="chandelier" aria-hidden="true">
-        <img src="assets/chandelier.png" alt="">
-      </div>
+      <span class="hebrew-mark" lang="he" dir="rtl">בס״ד</span>
       <div class="invitation-copy">
-        <span>Мы женимся</span>
-        <strong>ROMAN & VICTORIA</strong>
-        <div class="scratch-date" aria-label="Сотрите покрытие, чтобы узнать дату свадьбы">
-          <span class="scratch-circle"><b>26</b><canvas></canvas></span>
 
-          <span class="scratch-circle"><b>08</b><canvas></canvas></span>
-
-          <span class="scratch-circle"><b>26</b><canvas></canvas></span>
-        </div>
-        <small class="scratch-hint">Сотрите, чтобы узнать дату</small>
+        <span class="hero-subtitle">Wedding of</span>
+        <strong aria-label="Roman and Victoria">
+          <span class="couple-name">ROMAN</span>
+          <i>&amp;</i>
+          <span class="couple-name">VICTORIA</span>
+        </strong>
+        <span class="hero-divider" aria-hidden="true"></span>
+        <time datetime="2026-08-26">26.08.2026</time>
+        <small class="hero-location">Moscow, Russia</small>
         <a class="scroll-cue" href="#invite-letter">Листайте вниз <b>↓</b></a>
       </div>
       <section class="invite-letter" id="invite-letter">
         <div class="floral floral--left" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
         <div class="floral floral--right" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
         <span class="invite-letter__eyebrow">Родные и близкие!</span>
-        <h2>Мы будем счастливы<br>видеть вас рядом!</h2>
+        <h2>Мы женимся!</h2>
         <i></i>
-        <p>С большой радостью приглашаем вас<br>на празднование важного события<br>в нашей жизни — нашей свадьбы!
-        </p>
-        <p>Мы очень хотим, чтобы в этот день<br>с нами рядом были самые дорогие нам люди!</p>
+        <p>С большой радостью приглашаем вас<br>на празднование важного события<br>в нашей жизни — Дня Свадьбы!</p>
       </section>
       <section class="calendar-section" id="calendar-section">
         <img class="calendar-flowers" src="assets/calendar-flowers.png" alt="" aria-hidden="true">
@@ -59,15 +54,16 @@
             <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
             <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
             <span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
-            <span>24</span><span>25</span><span
-              class="wedding-day">26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+            <span>24</span><span>25</span><span class="wedding-day">26
+              <svg class="calendar-heart" viewBox="0 0 64 58" aria-hidden="true">
+                <path
+                  d="M32 53C27 47 8 35 8 20C8 10 14 5 22 5C27 5 30 8 32 12C34 8 37 5 42 5C50 5 56 10 56 20C56 35 37 47 32 53Z">
+                </path>
+              </svg>
+            </span><span>27</span><span>28</span><span>29</span><span>30</span>
             <span>31</span>
-            <svg class="calendar-heart" viewBox="0 0 64 58" aria-hidden="true">
-              <path pathLength="1" d="M32 53C27 47 8 35 8 20C8 10 14 5 22 5C27 5 30 8 32 12C34 8 37 5 42 5C50 5 56 10 56 20C56 35 37 47 32 53Z"></path>
-            </svg>
           </div>
         </div>
-        <button class="save-date" type="button"><b>＋</b> Добавить в календарь</button>
         <!-- <small>26 августа 2026 · весь день</small> -->
       </section>
       <section class="schedule-section" id="schedule-section" aria-labelledby="schedule-title">
@@ -113,7 +109,7 @@
             <i style="--swatch:#8f756a" title="Тауп"></i>
             <i style="--swatch:#5f5752" title="Графит"></i>
           </div>
-          <small>Вечерние образы · спокойные благородные оттенки</small>
+          <small>Просим воздержаться от однотонных белых и молочных платьев</small>
         </div>
         <span class="dress-code__fabric dress-code__fabric--left" aria-hidden="true"></span>
         <span class="dress-code__fabric dress-code__fabric--right" aria-hidden="true"></span>
@@ -204,16 +200,31 @@
       </section>
       <section class="closing-section" id="closing-section" aria-label="Финал приглашения">
         <div class="closing-section__content">
-          <span class="closing-section__monogram" aria-hidden="true">V <i>&amp;</i> R</span>
           <span class="closing-section__ornament" aria-hidden="true"><i></i></span>
           <p>С любовью,</p>
-          <h2>Виктория <i>&amp;</i> Роман</h2>
+          <h2>Роман <i>&amp;</i> Виктория</h2>
         </div>
       </section>
     </section>
     <div class="bird-swarm" aria-hidden="true"></div>
     <section class="invitation" aria-label="Конверт">
       <div class="envelope-scene">
+        <svg class="envelope-clips" width="0" height="0" aria-hidden="true">
+          <defs>
+            <clipPath id="envelope-top-clip" clipPathUnits="objectBoundingBox">
+              <path d="M0,0 H1 L0.52,0.575 Q0.5,0.615 0.48,0.575 Z"></path>
+            </clipPath>
+            <clipPath id="envelope-left-clip" clipPathUnits="objectBoundingBox">
+              <path d="M0,0 L0.48,0.48 Q0.515,0.5 0.48,0.52 L0,1 Z"></path>
+            </clipPath>
+            <clipPath id="envelope-right-clip" clipPathUnits="objectBoundingBox">
+              <path d="M1,0 V1 L0.52,0.52 Q0.485,0.5 0.52,0.48 Z"></path>
+            </clipPath>
+            <clipPath id="envelope-bottom-clip" clipPathUnits="objectBoundingBox">
+              <path d="M0,1 H1 L0.52,0.52 Q0.5,0.485 0.48,0.52 Z"></path>
+            </clipPath>
+          </defs>
+        </svg>
         <span class="envelope-shadow"></span>
         <span class="envelope">
           <span class="envelope__back"></span>
@@ -241,7 +252,7 @@
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260717-3"></script>
 </body>
 
 </html>

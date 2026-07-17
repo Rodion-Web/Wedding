@@ -1570,6 +1570,221 @@ button {
   }
 }
 
+/* Definitive neutral envelope override — must remain last in this file. */
+.envelope__folds {
+  display: none !important;
+}
+
+body .envelope-scene .envelope {
+  background: #eeeae4;
+}
+
+body .envelope-scene:not(.is-open) .envelope__back {
+  background: #fff;
+  box-shadow: inset 0 12px 22px rgba(69, 58, 47, .045);
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--left {
+  background: linear-gradient(108deg, #e4ded6 0%, #f8f6f2 72%, #e7e1d9 100%);
+  filter:
+    drop-shadow(3px -2px 3px rgba(69, 58, 47, .15)) drop-shadow(1px -1px 0 rgba(255, 255, 255, .75));
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--right {
+  background: linear-gradient(-108deg, #dfd9d1 0%, #f7f5f1 72%, #e4ded7 100%);
+  filter:
+    drop-shadow(-3px -2px 3px rgba(69, 58, 47, .15)) drop-shadow(-1px -1px 0 rgba(255, 255, 255, .75));
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--bottom {
+  background: linear-gradient(180deg, #f8f6f2 0%, #e5dfd8 57%, #dcd5cc 100%);
+  filter:
+    drop-shadow(0 -3px 4px rgba(69, 58, 47, .16)) drop-shadow(0 -1px 0 rgba(255, 255, 255, .78));
+}
+
+body .envelope-scene:not(.is-open) .flap-paper {
+  background: linear-gradient(180deg, #fbf9f6 0%, #e3ddd5 100%);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .92);
+  filter:
+    drop-shadow(0 4px 4px rgba(69, 58, 47, .17)) drop-shadow(0 1px 0 rgba(255, 255, 255, .8));
+}
+
+body .envelope-scene:not(.is-open) .seal {
+  animation: none;
+  filter: drop-shadow(0 7px 7px rgba(69, 58, 47, .2));
+}
+
+body .envelope-scene:not(.is-open) .seal__image {
+  opacity: 1;
+  filter: drop-shadow(0 7px 6px rgba(69, 58, 47, .22));
+}
+
+@media (max-width:620px) {
+  body .envelope-scene:not(.is-open) .envelope__pocket--left {
+    clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
+  }
+
+  body .envelope-scene:not(.is-open) .envelope__pocket--right {
+    clip-path: polygon(100% 0, 0 50%, 0 100%, 100% 100%);
+  }
+
+  body .envelope-scene:not(.is-open) .envelope__pocket--bottom {
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  }
+
+  body .envelope-scene:not(.is-open) .flap-paper {
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+}
+
+/* Final envelope finish: clean white interior, deeper folds and a soft hand-off. */
+.envelope-scene {
+  perspective: 1750px;
+  perspective-origin: 50% 10%;
+}
+
+.envelope {
+  background: #eee9e1;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  z-index: 6;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(72, 58, 43, .07), transparent 5%, transparent 95%, rgba(72, 58, 43, .07)),
+    linear-gradient(180deg, rgba(255, 255, 255, .26), transparent 8%, transparent 91%, rgba(69, 55, 40, .08));
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, .9),
+    inset 0 -14px 25px rgba(76, 61, 44, .08);
+}
+
+/* The surface revealed after the flap opens is deliberately plain white. */
+.envelope__back {
+  background: #fff;
+  box-shadow:
+    inset 0 18px 30px rgba(76, 61, 44, .055),
+    inset 18px 0 30px rgba(76, 61, 44, .025),
+    inset -18px 0 30px rgba(76, 61, 44, .025);
+}
+
+.envelope__back::after {
+  display: none;
+}
+
+.envelope__pocket--left {
+  background:
+    radial-gradient(ellipse at 15% 47%, rgba(255, 255, 255, .52), transparent 48%),
+    linear-gradient(112deg, #e2dbd1 0%, #f8f5ef 72%, #e6dfd5 100%);
+  filter:
+    drop-shadow(5px -4px 4px rgba(69, 55, 40, .18)) drop-shadow(1px -1px 0 rgba(255, 255, 255, .72));
+}
+
+.envelope__pocket--right {
+  background:
+    radial-gradient(ellipse at 85% 47%, rgba(255, 255, 255, .5), transparent 48%),
+    linear-gradient(-112deg, #ddd5ca 0%, #f7f4ee 72%, #e2dbd1 100%);
+  filter:
+    drop-shadow(-5px -4px 4px rgba(69, 55, 40, .18)) drop-shadow(-1px -1px 0 rgba(255, 255, 255, .72));
+}
+
+.envelope__pocket--bottom {
+  background:
+    radial-gradient(ellipse at 50% 106%, rgba(255, 255, 255, .68), transparent 58%),
+    linear-gradient(180deg, #f6f3ed 0%, #e5ded4 48%, #d8cfc2 100%);
+  filter:
+    drop-shadow(0 -5px 5px rgba(67, 53, 39, .2)) drop-shadow(0 -1px 0 rgba(255, 255, 255, .8));
+}
+
+.envelope__flap {
+  transform: rotateX(0deg) translateZ(3px);
+  transition: transform 2.55s .04s cubic-bezier(.18, .72, .16, 1);
+}
+
+.flap-paper {
+  background:
+    radial-gradient(ellipse at 50% -4%, rgba(255, 255, 255, .82), transparent 55%),
+    linear-gradient(118deg, rgba(255, 255, 255, .4), transparent 38%),
+    linear-gradient(180deg, #f4f1eb 0%, #ddd5ca 100%);
+  box-shadow:
+    inset 0 2px rgba(255, 255, 255, .92),
+    inset 18px 0 30px rgba(255, 255, 255, .12),
+    inset -18px 0 30px rgba(72, 57, 42, .045);
+  filter:
+    drop-shadow(0 7px 5px rgba(61, 47, 34, .26)) drop-shadow(0 1px 0 rgba(255, 255, 255, .82));
+}
+
+.flap-paper::after {
+  opacity: .1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='2' seed='19'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.08'/%3E%3C/svg%3E");
+}
+
+.is-open .envelope__flap {
+  transform: rotateX(179deg) translateZ(3px);
+}
+
+.show-invitation .invitation {
+  visibility: visible;
+  pointer-events: none;
+  animation: envelope-dissolve-soft 1.15s cubic-bezier(.22, .65, .28, 1) both;
+}
+
+@keyframes envelope-dissolve-soft {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+
+  55% {
+    opacity: .48;
+    filter: blur(1px);
+    transform: scale(1.012);
+  }
+
+  100% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: scale(1.028);
+  }
+}
+
+.reveal-page {
+  transform: scale(1.025) translateY(12px);
+  transition:
+    opacity 1.15s cubic-bezier(.22, .65, .28, 1),
+    transform 1.35s cubic-bezier(.2, .75, .2, 1),
+    visibility 0s 1.15s;
+}
+
+.show-invitation .reveal-page {
+  transform: none;
+  transition-delay: 0s;
+}
+
+.show-invitation .curtain-layer {
+  animation: curtain-layer-in 1.3s cubic-bezier(.2, .72, .24, 1) both;
+}
+
+.show-invitation .reveal-page>.chandelier {
+  animation:
+    chandelier-simple-drop 1.85s .08s cubic-bezier(.2, .72, .22, 1) both,
+    chandelier-gentle-sway 4.8s 1.93s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .envelope__flap {
+    transition-duration: .01ms;
+  }
+
+  .show-invitation .invitation {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 /* Fourth screen: wedding-day schedule */
 .schedule-section {
   position: relative;
@@ -1816,6 +2031,7 @@ button {
 }
 
 @media (prefers-reduced-motion:reduce) {
+
   .schedule-section,
   .schedule-list li {
     opacity: 1;
@@ -1963,11 +2179,29 @@ button {
   animation: dress-code-slot-roll 1.55s var(--slot-delay, .18s) cubic-bezier(.18, .72, .2, 1) both;
 }
 
-.dress-code-section.is-visible .dress-code__palette i:nth-child(1) { --slot-delay: .18s; }
-.dress-code-section.is-visible .dress-code__palette i:nth-child(2) { --slot-delay: .28s; transition-delay: .09s; }
-.dress-code-section.is-visible .dress-code__palette i:nth-child(3) { --slot-delay: .38s; transition-delay: .18s; }
-.dress-code-section.is-visible .dress-code__palette i:nth-child(4) { --slot-delay: .48s; transition-delay: .27s; }
-.dress-code-section.is-visible .dress-code__palette i:nth-child(5) { --slot-delay: .58s; transition-delay: .36s; }
+.dress-code-section.is-visible .dress-code__palette i:nth-child(1) {
+  --slot-delay: .18s;
+}
+
+.dress-code-section.is-visible .dress-code__palette i:nth-child(2) {
+  --slot-delay: .28s;
+  transition-delay: .09s;
+}
+
+.dress-code-section.is-visible .dress-code__palette i:nth-child(3) {
+  --slot-delay: .38s;
+  transition-delay: .18s;
+}
+
+.dress-code-section.is-visible .dress-code__palette i:nth-child(4) {
+  --slot-delay: .48s;
+  transition-delay: .27s;
+}
+
+.dress-code-section.is-visible .dress-code__palette i:nth-child(5) {
+  --slot-delay: .58s;
+  transition-delay: .36s;
+}
 
 @keyframes dress-code-slot-roll {
   0% {
@@ -1975,11 +2209,25 @@ button {
     opacity: 1;
   }
 
-  24% { transform: translateY(-31%); }
-  49% { transform: translateY(-62%); }
-  70% { transform: translateY(-84.7%); }
-  82% { transform: translateY(-81.5%); }
-  92% { transform: translateY(-83.7%); }
+  24% {
+    transform: translateY(-31%);
+  }
+
+  49% {
+    transform: translateY(-62%);
+  }
+
+  70% {
+    transform: translateY(-84.7%);
+  }
+
+  82% {
+    transform: translateY(-81.5%);
+  }
+
+  92% {
+    transform: translateY(-83.7%);
+  }
 
   98% {
     transform: translateY(-83.333%);
@@ -2065,11 +2313,17 @@ button {
     opacity: .22;
   }
 
-  .dress-code__fabric--left { left: -34%; }
-  .dress-code__fabric--right { right: -34%; }
+  .dress-code__fabric--left {
+    left: -34%;
+  }
+
+  .dress-code__fabric--right {
+    right: -34%;
+  }
 }
 
 @media (prefers-reduced-motion:reduce) {
+
   .dress-code-section,
   .dress-code__palette i {
     opacity: 1;
@@ -2255,6 +2509,7 @@ button {
 }
 
 @media (prefers-reduced-motion:reduce) {
+
   .details-section,
   .details-card,
   .details-section:not(.is-visible) .details-card {
@@ -2331,8 +2586,13 @@ button {
   background: linear-gradient(transparent, rgba(150, 123, 96, .26), transparent);
 }
 
-.location-card::before { left: 24px; }
-.location-card::after { right: 24px; }
+.location-card::before {
+  left: 24px;
+}
+
+.location-card::after {
+  right: 24px;
+}
 
 .location-card__eyebrow {
   color: #857666;
@@ -2537,6 +2797,7 @@ button {
 }
 
 @media (prefers-reduced-motion:reduce) {
+
   .location-section,
   .location-card {
     opacity: 1;
@@ -2775,8 +3036,15 @@ button {
 }
 
 @keyframes companion-field-in {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .guest-form__submit {
@@ -2786,7 +3054,7 @@ button {
   padding: 15px 25px;
   border: 0;
   border-radius: 999px;
-  color: #fff;
+  color: #fff !important;
   background: linear-gradient(135deg, #a2876e, #745e4a);
   box-shadow: 0 11px 25px rgba(91, 68, 47, .24);
   font: 600 10px/1 Manrope, sans-serif;
@@ -2967,7 +3235,9 @@ button {
 }
 
 @keyframes guest-success-mark {
-  to { transform: rotate(45deg) scale(1); }
+  to {
+    transform: rotate(45deg) scale(1);
+  }
 }
 
 @media (max-width:700px) {
@@ -3032,6 +3302,7 @@ button {
 }
 
 @media (prefers-reduced-motion:reduce) {
+
   .guest-form-section,
   .guest-form-card,
   .guest-form__success,
@@ -3160,8 +3431,14 @@ button {
   background: linear-gradient(90deg, transparent, #a98c6f);
 }
 
-.closing-section__ornament::before { left: 0; }
-.closing-section__ornament::after { right: 0; transform: scaleX(-1); }
+.closing-section__ornament::before {
+  left: 0;
+}
+
+.closing-section__ornament::after {
+  right: 0;
+  transform: scaleX(-1);
+}
 
 .closing-section__ornament i {
   position: absolute;
@@ -3233,6 +3510,7 @@ button {
 }
 
 @media (prefers-reduced-motion:reduce) {
+
   .closing-section,
   .closing-section__content {
     opacity: 1;
@@ -4287,4 +4565,1589 @@ button {
   .envelope-scene:not(.is-open) .seal {
     animation: none;
   }
+}
+
+/* Keep the final curtain entrance aligned with the softened scene transition. */
+.show-invitation .curtain-layer {
+  z-index: 100;
+  animation: curtain-layer-in 1.3s cubic-bezier(.2, .72, .24, 1) both;
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .show-invitation .curtain-layer {
+    animation: none;
+  }
+}
+
+/* Mobile reference: a layered blush envelope whose panels open outwards. */
+@media (max-width:620px) {
+  .envelope-scene {
+    perspective: 1250px;
+    perspective-origin: 50% 44%;
+  }
+
+  .envelope {
+    background: #efdadd;
+  }
+
+  .envelope::before {
+    background:
+      radial-gradient(circle at var(--light-x) var(--light-y), rgba(255, 255, 255, .2), transparent 31%),
+      linear-gradient(90deg, rgba(91, 55, 61, .06), transparent 7%, transparent 93%, rgba(91, 55, 61, .06)),
+      linear-gradient(180deg, rgba(255, 255, 255, .2), transparent 8%, transparent 91%, rgba(91, 55, 61, .07));
+    box-shadow: inset 0 0 34px rgba(91, 55, 61, .07);
+  }
+
+  .envelope__back {
+    background: #fff;
+    box-shadow:
+      inset 0 18px 28px rgba(91, 55, 61, .055),
+      inset 14px 0 24px rgba(91, 55, 61, .025),
+      inset -14px 0 24px rgba(91, 55, 61, .025);
+  }
+
+  .envelope__pocket {
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+    will-change: transform, opacity;
+  }
+
+  .envelope__pocket--left {
+    background:
+      linear-gradient(54deg, rgba(117, 70, 79, .11), transparent 29%),
+      radial-gradient(ellipse at 12% 48%, rgba(255, 255, 255, .38), transparent 52%),
+      linear-gradient(105deg, #e9cfd4 0%, #f7e5e7 72%, #dfc1c7 100%);
+    filter:
+      drop-shadow(4px -3px 4px rgba(91, 55, 61, .2)) drop-shadow(1px -1px 0 rgba(255, 255, 255, .65));
+    transform-origin: 0 50%;
+    transition: transform 1.65s .3s cubic-bezier(.2, .72, .2, 1), opacity .65s 1.35s ease;
+  }
+
+  .envelope__pocket--right {
+    background:
+      linear-gradient(-54deg, rgba(117, 70, 79, .11), transparent 29%),
+      radial-gradient(ellipse at 88% 48%, rgba(255, 255, 255, .38), transparent 52%),
+      linear-gradient(-105deg, #e5c9cf 0%, #f6e3e6 72%, #dcbcc3 100%);
+    filter:
+      drop-shadow(-4px -3px 4px rgba(91, 55, 61, .2)) drop-shadow(-1px -1px 0 rgba(255, 255, 255, .65));
+    transform-origin: 100% 50%;
+    transition: transform 1.65s .3s cubic-bezier(.2, .72, .2, 1), opacity .65s 1.35s ease;
+  }
+
+  .envelope__pocket--bottom {
+    background:
+      radial-gradient(ellipse at 50% 108%, rgba(255, 255, 255, .48), transparent 56%),
+      linear-gradient(180deg, #f6e2e5 0%, #e7ccd2 52%, #d9b9c0 100%);
+    filter:
+      drop-shadow(0 -4px 5px rgba(91, 55, 61, .2)) drop-shadow(0 -1px 0 rgba(255, 255, 255, .68));
+    transform-origin: 50% 100%;
+    transition: transform 1.55s .46s cubic-bezier(.2, .72, .2, 1), opacity .58s 1.42s ease;
+  }
+
+  .flap-paper {
+    background:
+      radial-gradient(ellipse at 50% -4%, rgba(255, 255, 255, .62), transparent 55%),
+      linear-gradient(118deg, rgba(255, 255, 255, .3), transparent 38%),
+      linear-gradient(180deg, #f7e6e8 0%, #dfc1c7 100%);
+    box-shadow:
+      inset 0 2px rgba(255, 255, 255, .8),
+      inset 14px 0 24px rgba(255, 255, 255, .1),
+      inset -14px 0 24px rgba(91, 55, 61, .045);
+    filter:
+      drop-shadow(0 6px 6px rgba(91, 55, 61, .24)) drop-shadow(0 1px 0 rgba(255, 255, 255, .68));
+  }
+
+  .flap-paper::after,
+  .envelope__pocket::after {
+    opacity: .13;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.52' numOctaves='2' seed='23'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.1'/%3E%3C/svg%3E");
+  }
+
+  .is-open .envelope__pocket--left {
+    transform: translate3d(-103%, 1%, 18px) rotate(-2.5deg);
+    opacity: .35;
+  }
+
+  .is-open .envelope__pocket--right {
+    transform: translate3d(103%, 1%, 18px) rotate(2.5deg);
+    opacity: .35;
+  }
+
+  .is-open .envelope__pocket--bottom {
+    transform: translate3d(0, 106%, 20px) rotate(.8deg);
+    opacity: .3;
+  }
+
+  .seal {
+    transform: translate3d(-50%, -50%, 18px) rotate(-3deg);
+  }
+
+  .seal::after {
+    content: "R · V";
+    position: absolute;
+    z-index: 7;
+    top: 50%;
+    left: 50%;
+    display: block;
+    color: #aa8d72;
+    font: italic 500 clamp(19px, 5.8vw, 27px)/1 "Cormorant Garamond", Georgia, serif;
+    letter-spacing: -.05em;
+    text-shadow: 0 1px rgba(255, 255, 255, .8), 0 -1px rgba(111, 87, 65, .2);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+}
+
+@media (max-width:620px) and (prefers-reduced-motion:reduce) {
+  .envelope__pocket {
+    transition-duration: .01ms;
+  }
+}
+
+/* Consolidated client theme: slides 2–10 inherit the second slide styling. */
+:root {
+  --slide-background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, .9), transparent 42%),
+    linear-gradient(145deg, #eee9e1, #faf7f1 48%, #e5ddd2);
+  --slide-text: #504d48;
+  --slide-accent: #a68066;
+}
+
+.invite-letter,
+.calendar-section,
+.schedule-section,
+.dress-code-section,
+.details-section,
+.location-section,
+.guest-form-section,
+.closing-section {
+  color: var(--slide-text);
+  background: var(--slide-background);
+}
+
+.invite-letter h2,
+.calendar-section h2,
+.schedule-section h2,
+.dress-code-section h2,
+.details-card h2,
+.location-card h2,
+.guest-form-card h2,
+.closing-section h2 {
+  color: var(--slide-text);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.schedule-section__eyebrow,
+.dress-code__eyebrow,
+.details-card__eyebrow,
+.location-card__eyebrow,
+.guest-form-card__eyebrow,
+.calendar-section__eyebrow {
+  color: #746b62;
+}
+
+.calendar__week,
+.calendar__days,
+.schedule-list,
+.dress-code__card p,
+.dress-code__card small,
+.details-card p,
+.location-card p,
+.guest-form-card>p,
+.closing-section p {
+  color: var(--slide-text);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.schedule-list time,
+.schedule-list li>span {
+  color: var(--slide-text);
+}
+
+/* First slide keeps only the curtain composition; replacement art will follow. */
+.reveal-page>.chandelier {
+  display: none !important;
+}
+
+.hebrew-mark {
+  position: absolute;
+  z-index: 101;
+  top: clamp(15px, 2.5svh, 28px);
+  right: clamp(17px, 3vw, 34px);
+  color: #5b5c58;
+  font: 500 clamp(14px, 1.5vw, 19px)/1 "Cormorant Garamond", Georgia, serif;
+  letter-spacing: .04em;
+  opacity: 0;
+  transform: translateY(-7px);
+  transition: opacity .8s .25s ease, transform .9s .2s ease;
+  pointer-events: none;
+}
+
+.show-invitation .hebrew-mark {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* The wedding date is marked statically and is no longer an interactive link. */
+.wedding-day {
+  z-index: 1;
+  color: #9f343e;
+  font-weight: 700 !important;
+}
+
+.wedding-day .calendar-heart {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 58px;
+  opacity: 1;
+  filter: drop-shadow(0 2px 3px rgba(129, 43, 52, .16));
+  transform: translate(-50%, -50%);
+  transition: none;
+}
+
+.wedding-day .calendar-heart path {
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+}
+
+.dress-code__card small {
+  max-width: 470px;
+  margin-inline: auto;
+  color: #70675f;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(12px, 1.3vw, 16px);
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: none;
+}
+
+@media (max-width:620px) {
+  .wedding-day .calendar-heart {
+    width: 57px;
+    height: 52px;
+  }
+
+  .dress-code__card small {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+}
+
+/* Final simple envelope: four clean panels slide apart along their cuts. */
+.envelope-scene {
+  perspective: none;
+  background: #e8e2da;
+}
+
+.envelope-scene::after {
+  opacity: .42;
+  background: radial-gradient(circle at var(--light-x) var(--light-y), rgba(255, 255, 255, .2), transparent 34%);
+  mix-blend-mode: soft-light;
+}
+
+.envelope {
+  background: #eee9e2;
+}
+
+.envelope::before {
+  background:
+    linear-gradient(90deg, rgba(74, 62, 49, .045), transparent 4%, transparent 96%, rgba(74, 62, 49, .045)),
+    linear-gradient(180deg, rgba(255, 255, 255, .28), transparent 7%, transparent 94%, rgba(74, 62, 49, .055));
+  box-shadow: inset 0 0 28px rgba(74, 62, 49, .045);
+}
+
+.envelope__back {
+  background: #fff;
+  box-shadow: inset 0 12px 22px rgba(74, 62, 49, .045);
+}
+
+.envelope__back::after,
+.flap-paper::before,
+.envelope__pocket--bottom::before,
+.flap-jewels {
+  display: none;
+}
+
+.envelope__pocket,
+.envelope__flap {
+  backface-visibility: visible;
+  transform-style: flat;
+  will-change: transform, opacity;
+}
+
+.envelope__pocket--left {
+  background: linear-gradient(108deg, #e6e0d8 0%, #f8f5f0 72%, #e8e2da 100%);
+  filter:
+    drop-shadow(3px -2px 3px rgba(74, 62, 49, .15)) drop-shadow(1px -1px 0 rgba(255, 255, 255, .72));
+  transform: translate3d(0, 0, 0);
+  transition: transform 1.42s .08s cubic-bezier(.22, .72, .2, 1), opacity .42s 1.08s ease;
+}
+
+.envelope__pocket--right {
+  background: linear-gradient(-108deg, #e1dbd2 0%, #f7f4ef 72%, #e5dfd7 100%);
+  filter:
+    drop-shadow(-3px -2px 3px rgba(74, 62, 49, .15)) drop-shadow(-1px -1px 0 rgba(255, 255, 255, .72));
+  transform: translate3d(0, 0, 0);
+  transition: transform 1.42s .08s cubic-bezier(.22, .72, .2, 1), opacity .42s 1.08s ease;
+}
+
+.envelope__pocket--bottom {
+  background: linear-gradient(180deg, #f7f4ef 0%, #e5dfd7 57%, #dcd5cc 100%);
+  filter:
+    drop-shadow(0 -3px 4px rgba(74, 62, 49, .16)) drop-shadow(0 -1px 0 rgba(255, 255, 255, .76));
+  transform: translate3d(0, 0, 0);
+  transition: transform 1.42s .08s cubic-bezier(.22, .72, .2, 1), opacity .42s 1.08s ease;
+}
+
+.envelope__flap {
+  transform: translate3d(0, 0, 0);
+  transition: transform 1.42s .08s cubic-bezier(.22, .72, .2, 1), opacity .42s 1.08s ease;
+}
+
+.flap-paper {
+  background: linear-gradient(180deg, #faf8f4 0%, #e3ddd5 100%);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .9);
+  filter:
+    drop-shadow(0 4px 4px rgba(74, 62, 49, .17)) drop-shadow(0 1px 0 rgba(255, 255, 255, .78));
+}
+
+.flap-paper::after,
+.envelope__pocket::after {
+  display: block;
+  opacity: .075;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.62' numOctaves='2' seed='31'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.1'/%3E%3C/svg%3E");
+}
+
+.is-open .envelope__flap {
+  transform: translate3d(0, -112%, 0);
+  opacity: .12;
+}
+
+.is-open .envelope__pocket--left {
+  transform: translate3d(-106%, 0, 0);
+  opacity: .12;
+}
+
+.is-open .envelope__pocket--right {
+  transform: translate3d(106%, 0, 0);
+  opacity: .12;
+}
+
+.is-open .envelope__pocket--bottom {
+  transform: translate3d(0, 110%, 0);
+  opacity: .12;
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+  .envelope__pocket,
+  .envelope__flap {
+    transition-duration: .01ms;
+  }
+}
+
+/* Voluminous curved folds — pronounced bends like the reference back */
+.envelope__folds {
+  position: absolute;
+  z-index: 8;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+.envelope-scene:not(.is-open) .envelope__folds {
+  opacity: 1;
+}
+
+.envelope__folds::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, .52) 0%, rgba(255, 255, 255, .12) 28%, transparent 46%),
+    radial-gradient(circle at 50% 50%, rgba(91, 55, 61, .11) 0%, transparent 48%);
+  mix-blend-mode: soft-light;
+}
+
+.envelope__folds::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    center / 100% 100% no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='hl' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffffff' stop-opacity='.62'/%3E%3Cstop offset='1' stop-color='%23ffffff' stop-opacity='0'/%3E%3C/linearGradient%3E%3ClinearGradient id='sh' x1='1' y1='1' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='%237a4a52' stop-opacity='.28'/%3E%3Cstop offset='1' stop-color='%237a4a52' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cfilter id='blur' x='-20%25' y='-20%25' width='140%25' height='140%25'%3E%3CfeGaussianBlur stdDeviation='3.2'/%3E%3C/filter%3E%3C/defs%3E%3Cg fill='none' stroke-linecap='round'%3E%3Cpath d='M72 68 Q430 250, 500 500' stroke='url(%23sh)' stroke-width='6.5' filter='url(%23blur)'/%3E%3Cpath d='M72 68 Q430 250, 500 500' stroke='url(%23hl)' stroke-width='2.6'/%3E%3Cpath d='M928 68 Q570 250, 500 500' stroke='url(%23sh)' stroke-width='6.5' filter='url(%23blur)'/%3E%3Cpath d='M928 68 Q570 250, 500 500' stroke='url(%23hl)' stroke-width='2.6'/%3E%3Cpath d='M72 932 Q430 750, 500 500' stroke='url(%23sh)' stroke-width='6.5' filter='url(%23blur)'/%3E%3Cpath d='M72 932 Q430 750, 500 500' stroke='url(%23hl)' stroke-width='2.6'/%3E%3Cpath d='M928 932 Q570 750, 500 500' stroke='url(%23sh)' stroke-width='6.5' filter='url(%23blur)'/%3E%3Cpath d='M928 932 Q570 750, 500 500' stroke='url(%23hl)' stroke-width='2.6'/%3E%3Cpath d='M68 72 Q250 430, 500 500' stroke='url(%23sh)' stroke-width='6.5' filter='url(%23blur)'/%3E%3Cpath d='M68 72 Q250 430, 500 500' stroke='url(%23hl)' stroke-width='2.6'/%3E%3Cpath d='M932 72 Q750 430, 500 500' stroke='url(%23sh)' stroke-width='6.5' filter='url(%23blur)'/%3E%3Cpath d='M932 72 Q750 430, 500 500' stroke='url(%23hl)' stroke-width='2.6'/%3E%3Cpath d='M68 928 Q250 570, 500 500' stroke='url(%23sh)' stroke-width='6.5' filter='url(%23blur)'/%3E%3Cpath d='M68 928 Q250 570, 500 500' stroke='url(%23hl)' stroke-width='2.6'/%3E%3Cpath d='M932 928 Q750 570, 500 500' stroke='url(%23sh)' stroke-width='6.5' filter='url(%23blur)'/%3E%3Cpath d='M932 928 Q750 570, 500 500' stroke='url(%23hl)' stroke-width='2.6'/%3E%3C/g%3E%3Ccircle cx='500' cy='500' r='68' fill='none' stroke='%23ffffff' stroke-opacity='.48' stroke-width='3.2'/%3E%3Ccircle cx='500' cy='500' r='68' fill='none' stroke='%237a4a52' stroke-opacity='.18' stroke-width='7' filter='url(%23blur)'/%3E%3Ccircle cx='500' cy='500' r='52' fill='none' stroke='%23ffffff' stroke-opacity='.32' stroke-width='1.8'/%3E%3C/svg%3E");
+  opacity: .96;
+}
+
+.envelope-scene:not(.is-open) .envelope__back {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, .28) 0%, transparent 42%),
+    radial-gradient(circle at 50% 50%, rgba(91, 55, 61, .06) 0%, transparent 55%),
+    #fff;
+  box-shadow:
+    inset 0 0 80px rgba(91, 55, 61, .04),
+    inset 0 22px 40px rgba(255, 255, 255, .35),
+    inset 0 -22px 40px rgba(91, 55, 61, .05);
+}
+
+.envelope-scene:not(.is-open) .envelope__pocket--left {
+  background:
+    radial-gradient(ellipse at 18% 46%, rgba(255, 255, 255, .45), transparent 50%),
+    radial-gradient(ellipse at 88% 52%, rgba(91, 55, 61, .07), transparent 46%),
+    linear-gradient(54deg, rgba(117, 70, 79, .1), transparent 29%),
+    linear-gradient(105deg, #e9cfd4 0%, #f7e5e7 72%, #dfc1c7 100%);
+  filter:
+    drop-shadow(5px -4px 5px rgba(91, 55, 61, .22)) drop-shadow(1px -1px 0 rgba(255, 255, 255, .7));
+}
+
+.envelope-scene:not(.is-open) .envelope__pocket--right {
+  background:
+    radial-gradient(ellipse at 82% 46%, rgba(255, 255, 255, .45), transparent 50%),
+    radial-gradient(ellipse at 12% 52%, rgba(91, 55, 61, .07), transparent 46%),
+    linear-gradient(-54deg, rgba(117, 70, 79, .1), transparent 29%),
+    linear-gradient(-105deg, #e5c9cf 0%, #f6e3e6 72%, #dcbcc3 100%);
+  filter:
+    drop-shadow(-5px -4px 5px rgba(91, 55, 61, .22)) drop-shadow(-1px -1px 0 rgba(255, 255, 255, .7));
+}
+
+.envelope-scene:not(.is-open) .envelope__pocket--bottom {
+  background:
+    radial-gradient(ellipse at 50% 108%, rgba(255, 255, 255, .52), transparent 56%),
+    radial-gradient(ellipse at 50% 18%, rgba(91, 55, 61, .06), transparent 48%),
+    linear-gradient(180deg, #f6e2e5 0%, #e7ccd2 52%, #d9b9c0 100%);
+  filter:
+    drop-shadow(0 -5px 6px rgba(91, 55, 61, .22)) drop-shadow(0 -1px 0 rgba(255, 255, 255, .72));
+}
+
+.envelope-scene:not(.is-open) .flap-paper {
+  background:
+    radial-gradient(ellipse at 50% 108%, rgba(255, 255, 255, .38), transparent 58%),
+    radial-gradient(ellipse at 50% -4%, rgba(255, 255, 255, .62), transparent 55%),
+    linear-gradient(118deg, rgba(255, 255, 255, .3), transparent 38%),
+    linear-gradient(180deg, #f7e6e8 0%, #dfc1c7 100%);
+  box-shadow:
+    inset 0 2px rgba(255, 255, 255, .82),
+    inset 14px 0 24px rgba(255, 255, 255, .1),
+    inset -14px 0 24px rgba(91, 55, 61, .05);
+  filter:
+    drop-shadow(0 7px 7px rgba(91, 55, 61, .26)) drop-shadow(0 1px 0 rgba(255, 255, 255, .7));
+}
+
+@media (max-width:620px) {
+  .envelope-scene:not(.is-open) .envelope__folds::after {
+    opacity: 1;
+  }
+
+  .envelope-scene:not(.is-open) .envelope__pocket--left {
+    clip-path: polygon(0 0, 16% 9%, 36% 20%, 58% 30%, 78% 40%, 100% 50%, 100% 100%, 0 100%);
+  }
+
+  .envelope-scene:not(.is-open) .envelope__pocket--right {
+    clip-path: polygon(100% 0, 84% 9%, 64% 20%, 42% 30%, 22% 40%, 0 50%, 0 100%, 100% 100%);
+  }
+
+  .envelope-scene:not(.is-open) .envelope__pocket--bottom {
+    clip-path: polygon(0 100%, 12% 60%, 26% 36%, 40% 16%, 50% 0, 60% 16%, 74% 36%, 88% 60%, 100% 100%);
+  }
+
+  .envelope-scene:not(.is-open) .flap-paper {
+    clip-path: polygon(0 0, 100% 0, 82% 30%, 70% 50%, 60% 66%, 50% 100%, 40% 66%, 30% 50%, 18% 30%);
+  }
+
+  .envelope-scene:not(.is-open) .seal {
+    opacity: .94;
+    filter: drop-shadow(0 8px 8px rgba(91, 55, 61, .2));
+    animation: seal-volume-breathe 3s ease-in-out infinite;
+  }
+
+  .envelope-scene:not(.is-open) .seal__image {
+    opacity: .88;
+    filter: drop-shadow(0 8px 6px rgba(91, 55, 61, .22)) saturate(.92);
+  }
+}
+
+@keyframes seal-volume-breathe {
+
+  0%,
+  100% {
+    transform: translate3d(-50%, -50%, 18px) rotate(-3deg) scale(1);
+    filter: drop-shadow(0 8px 8px rgba(91, 55, 61, .2));
+  }
+
+  50% {
+    transform: translate3d(-50%, -50%, 22px) rotate(-3deg) scale(1.03);
+    filter: drop-shadow(0 10px 12px rgba(91, 55, 61, .26));
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .envelope-scene:not(.is-open) .seal {
+    animation: none;
+  }
+}
+
+/* FINAL ENVELOPE COLORS AND CUTS — keep this block at EOF. */
+.envelope__folds {
+  display: none !important;
+}
+
+body .envelope-scene .envelope {
+  background: #eeeae4;
+}
+
+body .envelope-scene:not(.is-open) .envelope__back {
+  background: #fff;
+  box-shadow: inset 0 12px 22px rgba(69, 58, 47, .045);
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--left {
+  background: linear-gradient(108deg, #e4ded6 0%, #f8f6f2 72%, #e7e1d9 100%);
+  filter: drop-shadow(3px -2px 3px rgba(69, 58, 47, .15)) drop-shadow(1px -1px 0 rgba(255, 255, 255, .75));
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--right {
+  background: linear-gradient(-108deg, #dfd9d1 0%, #f7f5f1 72%, #e4ded7 100%);
+  filter: drop-shadow(-3px -2px 3px rgba(69, 58, 47, .15)) drop-shadow(-1px -1px 0 rgba(255, 255, 255, .75));
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--bottom {
+  background: linear-gradient(180deg, #f8f6f2 0%, #e5dfd8 57%, #dcd5cc 100%);
+  filter: drop-shadow(0 -3px 4px rgba(69, 58, 47, .16)) drop-shadow(0 -1px 0 rgba(255, 255, 255, .78));
+}
+
+body .envelope-scene:not(.is-open) .flap-paper {
+  background: linear-gradient(180deg, #fbf9f6 0%, #e3ddd5 100%);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .92);
+  filter: drop-shadow(0 4px 4px rgba(69, 58, 47, .17)) drop-shadow(0 1px 0 rgba(255, 255, 255, .8));
+}
+
+body .envelope-scene:not(.is-open) .seal {
+  animation: none;
+  opacity: 1;
+  filter: drop-shadow(0 7px 7px rgba(69, 58, 47, .2));
+}
+
+body .envelope-scene:not(.is-open) .seal__image {
+  opacity: 1;
+  filter: drop-shadow(0 7px 6px rgba(69, 58, 47, .22));
+}
+
+@media (max-width:620px) {
+  body .envelope-scene:not(.is-open) .envelope__pocket--left {
+    clip-path: polygon(0 0, 100% 50%, 100% 100%, 0 100%);
+  }
+
+  body .envelope-scene:not(.is-open) .envelope__pocket--right {
+    clip-path: polygon(100% 0, 0 50%, 0 100%, 100% 100%);
+  }
+
+  body .envelope-scene:not(.is-open) .envelope__pocket--bottom {
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  }
+
+  body .envelope-scene:not(.is-open) .flap-paper {
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+}
+
+/* Photorealistic kraft envelope based on the latest reference. */
+.invitation {
+  background:
+    radial-gradient(circle at 50% 42%, #eee9e1 0%, #ddd5cb 68%, #cec4b8 100%);
+}
+
+.envelope-scene {
+  perspective: none;
+  background: transparent;
+}
+
+body .envelope-scene .envelope {
+  inset: auto;
+  top: 50%;
+  left: 50%;
+  width: min(92vw, 860px);
+  height: auto;
+  aspect-ratio: 1.42 / 1;
+  overflow: hidden;
+  border: 1px solid rgba(91, 55, 25, .34);
+  border-radius: 2px;
+  background: #caa568;
+  box-shadow:
+    0 24px 48px rgba(61, 43, 26, .24),
+    0 7px 13px rgba(61, 43, 26, .16),
+    inset 0 1px rgba(255, 245, 215, .5);
+  transform: translate(-50%, -50%);
+}
+
+body .envelope-scene .envelope::before {
+  z-index: 9;
+  background:
+    linear-gradient(90deg, rgba(74, 43, 18, .07), transparent 3%, transparent 97%, rgba(74, 43, 18, .07)),
+    linear-gradient(180deg, rgba(255, 245, 210, .16), transparent 6%, transparent 94%, rgba(74, 43, 18, .08));
+  box-shadow: inset 0 0 24px rgba(71, 42, 19, .08);
+}
+
+body .envelope-scene .envelope__flap {
+  height: 50%;
+}
+
+body .envelope-scene:not(.is-open) .envelope__back {
+  background: #fff;
+  box-shadow: inset 0 12px 22px rgba(78, 52, 29, .06);
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--left {
+  background:
+    radial-gradient(ellipse at 14% 48%, rgba(255, 235, 185, .22), transparent 52%),
+    linear-gradient(104deg, #b98e50 0%, #d6b372 66%, #c49b5d 100%);
+  filter:
+    drop-shadow(3px -2px 2px rgba(83, 48, 19, .34)) drop-shadow(1px -1px 0 rgba(255, 236, 191, .35));
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--right {
+  background:
+    radial-gradient(ellipse at 86% 48%, rgba(255, 235, 185, .2), transparent 52%),
+    linear-gradient(-104deg, #b48749 0%, #d2ad6c 66%, #bf9457 100%);
+  filter:
+    drop-shadow(-3px -2px 2px rgba(83, 48, 19, .34)) drop-shadow(-1px -1px 0 rgba(255, 236, 191, .34));
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--bottom {
+  background:
+    radial-gradient(ellipse at 50% 112%, rgba(255, 236, 190, .28), transparent 58%),
+    linear-gradient(180deg, #d5af6d 0%, #c49a5b 58%, #b98d50 100%);
+  filter:
+    drop-shadow(0 -3px 3px rgba(83, 48, 19, .34)) drop-shadow(0 -1px 0 rgba(255, 238, 195, .38));
+}
+
+body .envelope-scene:not(.is-open) .flap-paper {
+  background:
+    radial-gradient(ellipse at 50% -8%, rgba(255, 238, 194, .28), transparent 58%),
+    linear-gradient(180deg, #d9b774 0%, #bd8f4f 100%);
+  box-shadow: inset 0 1px rgba(255, 241, 204, .46);
+  filter:
+    drop-shadow(0 4px 3px rgba(82, 45, 17, .38)) drop-shadow(0 1px 0 rgba(255, 239, 193, .34));
+}
+
+body .envelope-scene .flap-paper::after,
+body .envelope-scene .envelope__pocket::after {
+  display: block;
+  opacity: .34;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(circle at 18% 24%, rgba(73, 43, 19, .2) 0 1px, transparent 1.3px),
+    radial-gradient(circle at 76% 68%, rgba(73, 43, 19, .15) 0 .8px, transparent 1.1px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' seed='41'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k)' opacity='.16'/%3E%3C/svg%3E");
+  background-size: 83px 79px, 117px 109px, 170px 170px;
+}
+
+/* Deep red wax seal built from the existing transparent seal silhouette. */
+body .envelope-scene .seal {
+  width: clamp(84px, 10vw, 116px);
+  overflow: visible;
+  background: none;
+  box-shadow: none;
+  filter: drop-shadow(0 8px 7px rgba(69, 24, 16, .38));
+}
+
+body .envelope-scene .seal::before {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  inset: -13%;
+  display: block;
+  background:
+    radial-gradient(circle at 30% 21%, rgba(255, 188, 165, .85) 0 3%, rgba(255, 126, 105, .24) 10%, transparent 20%),
+    radial-gradient(circle at 67% 72%, rgba(68, 0, 0, .4), transparent 35%),
+    conic-gradient(from 12deg, #8f0d12, #d02a29 14%, #9e1016 31%, #e03b32 49%, #8c0710 70%, #c51d21 86%, #8f0d12);
+  -webkit-mask: url("assets/seal-plain-white-v3.png") center / contain no-repeat;
+  mask: url("assets/seal-plain-white-v3.png") center / contain no-repeat;
+}
+
+body .envelope-scene .seal__image {
+  opacity: 0;
+}
+
+body .envelope-scene .seal__rim {
+  position: absolute;
+  z-index: 6;
+  inset: 18%;
+  display: block;
+  border: 1px solid rgba(90, 0, 5, .72);
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 27%, rgba(255, 116, 99, .18), transparent 34%);
+  box-shadow:
+    inset 2px 3px 4px rgba(66, 0, 3, .36),
+    1px 1px 1px rgba(255, 123, 102, .35);
+}
+
+body .envelope-scene .seal::after {
+  content: "R · V";
+  position: absolute;
+  z-index: 8;
+  top: 50%;
+  left: 50%;
+  display: block;
+  color: #f0b6a0;
+  font: italic 500 clamp(17px, 2.6vw, 25px)/1 "Cormorant Garamond", Georgia, serif;
+  letter-spacing: -.04em;
+  text-shadow: 0 1px rgba(72, 0, 4, .7), 0 -1px rgba(255, 178, 151, .3);
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+body .envelope-scene:not(.is-open) .seal {
+  animation: none;
+  opacity: 1;
+}
+
+@media (max-width:620px) {
+  body .envelope-scene .envelope {
+    width: min(94vw, 520px);
+  }
+
+  body .envelope-scene .seal {
+    width: clamp(82px, 24vw, 104px);
+  }
+
+  .open-button {
+    top: calc(50% + min(28vw, 112px));
+  }
+}
+
+/* Final responsive envelope geometry and synchronized four-way opening. */
+body .envelope-scene .envelope {
+  border-color: rgba(101, 79, 54, .2);
+  background: #e8dccb;
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--left {
+  background:
+    radial-gradient(ellipse at 14% 48%, rgba(255, 255, 255, .32), transparent 54%),
+    linear-gradient(105deg, #d8c5aa 0%, #eee2d1 68%, #dfceb7 100%);
+  filter: drop-shadow(3px -2px 2px rgba(87, 67, 45, .22)) drop-shadow(1px -1px 0 rgba(255, 255, 255, .52));
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--right {
+  background:
+    radial-gradient(ellipse at 86% 48%, rgba(255, 255, 255, .3), transparent 54%),
+    linear-gradient(-105deg, #d4c0a4 0%, #ece0cf 68%, #dcc9b1 100%);
+  filter: drop-shadow(-3px -2px 2px rgba(87, 67, 45, .22)) drop-shadow(-1px -1px 0 rgba(255, 255, 255, .5));
+}
+
+body .envelope-scene:not(.is-open) .envelope__pocket--bottom {
+  background:
+    radial-gradient(ellipse at 50% 110%, rgba(255, 255, 255, .34), transparent 58%),
+    linear-gradient(180deg, #eee2d1 0%, #ddcab2 58%, #d0b99d 100%);
+  filter: drop-shadow(0 -3px 3px rgba(87, 67, 45, .23)) drop-shadow(0 -1px 0 rgba(255, 255, 255, .54));
+}
+
+body .envelope-scene:not(.is-open) .flap-paper {
+  background:
+    radial-gradient(ellipse at 50% -8%, rgba(255, 255, 255, .36), transparent 58%),
+    linear-gradient(180deg, #f0e5d5 0%, #d6c1a5 100%);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .62);
+  filter: drop-shadow(0 4px 3px rgba(87, 67, 45, .24)) drop-shadow(0 1px 0 rgba(255, 255, 255, .52));
+}
+
+body .envelope-scene .envelope__pocket,
+body .envelope-scene .envelope__flap {
+  transition:
+    transform 1.4s 0s cubic-bezier(.22, .72, .2, 1),
+    opacity .4s 1s ease;
+}
+
+/* Restore the original light three-dimensional seal. */
+body .envelope-scene .seal {
+  width: clamp(96px, 10.5vw, 132px);
+  filter: drop-shadow(0 8px 7px rgba(65, 52, 40, .24));
+}
+
+body .envelope-scene .seal::before {
+  display: none;
+}
+
+body .envelope-scene .seal__image {
+  opacity: 1;
+  filter: drop-shadow(0 7px 6px rgba(65, 52, 40, .25));
+}
+
+body .envelope-scene .seal__rim {
+  display: none;
+}
+
+body .envelope-scene .seal::after {
+  content: "R · V";
+  color: #a58c70;
+  font-size: clamp(17px, 2.3vw, 25px);
+  text-shadow: 0 1px rgba(255, 255, 255, .9), 0 -1px rgba(91, 71, 50, .18);
+}
+
+@media (min-width:621px) {
+  body .envelope-scene .envelope {
+    inset: 0;
+    width: 100vw;
+    height: 100svh;
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 0;
+    box-shadow: inset 0 0 34px rgba(79, 60, 40, .07);
+    transform: none;
+  }
+
+  body .envelope-scene .envelope__flap {
+    height: 50%;
+  }
+}
+
+@media (max-width:620px) {
+  .invitation {
+    background: radial-gradient(circle at 50% 45%, #f2ede6 0%, #ded6cc 72%, #d0c7bc 100%);
+  }
+
+  body .envelope-scene .envelope {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: min(92vw, 520px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(101, 79, 54, .22);
+    box-shadow: 0 22px 42px rgba(65, 50, 35, .2), 0 6px 12px rgba(65, 50, 35, .12);
+    transform: translate(-50%, -50%);
+  }
+
+  body .envelope-scene .envelope__flap {
+    height: 50%;
+  }
+
+  body .envelope-scene .seal {
+    width: clamp(88px, 25vw, 112px);
+  }
+
+  .open-button {
+    top: calc(50% + min(31vw, 125px));
+  }
+}
+
+/* Preserve the beige paper while panels are travelling off-screen. */
+body .envelope-scene .envelope__pocket--left {
+  background:
+    radial-gradient(ellipse at 14% 48%, rgba(255, 255, 255, .32), transparent 54%),
+    linear-gradient(105deg, #d8c5aa 0%, #eee2d1 68%, #dfceb7 100%);
+}
+
+body .envelope-scene .envelope__pocket--right {
+  background:
+    radial-gradient(ellipse at 86% 48%, rgba(255, 255, 255, .3), transparent 54%),
+    linear-gradient(-105deg, #d4c0a4 0%, #ece0cf 68%, #dcc9b1 100%);
+}
+
+body .envelope-scene .envelope__pocket--bottom {
+  background:
+    radial-gradient(ellipse at 50% 110%, rgba(255, 255, 255, .34), transparent 58%),
+    linear-gradient(180deg, #eee2d1 0%, #ddcab2 58%, #d0b99d 100%);
+}
+
+body .envelope-scene .flap-paper {
+  background:
+    radial-gradient(ellipse at 50% -8%, rgba(255, 255, 255, .36), transparent 58%),
+    linear-gradient(180deg, #f0e5d5 0%, #d6c1a5 100%);
+}
+
+/* Four immutable triangles: translation only, one axis per panel. */
+body .envelope-scene .envelope__flap,
+body .envelope-scene .envelope__pocket--left,
+body .envelope-scene .envelope__pocket--right,
+body .envelope-scene .envelope__pocket--bottom {
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transform-origin: 50% 50%;
+  transition: transform 1.4s cubic-bezier(.22, .72, .2, 1);
+}
+
+body .envelope-scene .flap-paper {
+  clip-path: polygon(0 0, 100% 0, 50% 50.15%);
+}
+
+body .envelope-scene .envelope__pocket--left {
+  clip-path: polygon(0 0, 50.15% 50%, 0 100%);
+}
+
+body .envelope-scene .envelope__pocket--right {
+  clip-path: polygon(100% 0, 100% 100%, 49.85% 50%);
+}
+
+body .envelope-scene .envelope__pocket--bottom {
+  clip-path: polygon(0 100%, 50% 49.85%, 100% 100%);
+}
+
+body .envelope-scene .seal {
+  top: 50%;
+}
+
+body .envelope-scene.is-open .envelope__flap {
+  opacity: 1;
+  transform: translate3d(0, -101%, 0);
+}
+
+body .envelope-scene.is-open .envelope__pocket--left {
+  opacity: 1;
+  transform: translate3d(-101%, 0, 0);
+}
+
+body .envelope-scene.is-open .envelope__pocket--right {
+  opacity: 1;
+  transform: translate3d(101%, 0, 0);
+}
+
+body .envelope-scene.is-open .envelope__pocket--bottom {
+  opacity: 1;
+  transform: translate3d(0, 101%, 0);
+}
+
+@media (max-width:620px) {
+
+  body .envelope-scene .envelope__flap,
+  body .envelope-scene .envelope__pocket--left,
+  body .envelope-scene .envelope__pocket--right,
+  body .envelope-scene .envelope__pocket--bottom {
+    width: 100%;
+    height: 100%;
+  }
+
+  body .envelope-scene .flap-paper {
+    clip-path: polygon(0 0, 100% 0, 50% 50.15%);
+  }
+
+  body .envelope-scene .envelope__pocket--left {
+    clip-path: polygon(0 0, 50.15% 50%, 0 100%);
+  }
+
+  body .envelope-scene .envelope__pocket--right {
+    clip-path: polygon(100% 0, 100% 100%, 49.85% 50%);
+  }
+
+  body .envelope-scene .envelope__pocket--bottom {
+    clip-path: polygon(0 100%, 50% 49.85%, 100% 100%);
+  }
+}
+
+/* Slower, softer synchronized opening. */
+body .envelope-scene .envelope__flap,
+body .envelope-scene .envelope__pocket--left,
+body .envelope-scene .envelope__pocket--right,
+body .envelope-scene .envelope__pocket--bottom {
+  transition: transform 2.35s cubic-bezier(.42, 0, .18, 1);
+}
+
+/* Rounded panel tips and seal-first mask transition. */
+.envelope-clips {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+body .envelope-scene .envelope {
+  border-radius: clamp(14px, 1.8vw, 24px);
+}
+
+body .envelope-scene .flap-paper {
+  clip-path: url(#envelope-top-clip);
+}
+
+body .envelope-scene .envelope__pocket--left {
+  clip-path: url(#envelope-left-clip);
+}
+
+body .envelope-scene .envelope__pocket--right {
+  clip-path: url(#envelope-right-clip);
+}
+
+body .envelope-scene .envelope__pocket--bottom {
+  clip-path: url(#envelope-bottom-clip);
+}
+
+body .envelope-scene .seal {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(-3deg) scale(1);
+  transition: opacity .9s cubic-bezier(.4, 0, .2, 1);
+}
+
+body .envelope-scene.is-unsealing .envelope__flap .seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-3deg) scale(1);
+}
+
+/* Covers the rounded-tip junction while the seal is fading. */
+body .envelope-scene .envelope__flap::before {
+  content: "";
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  width: clamp(32px, 4vw, 72px);
+  aspect-ratio: 1;
+  display: block;
+  border-radius: 50%;
+  background: #d6c1a5;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+@media (max-width:620px) {
+  body .envelope-scene .envelope__flap::before {
+    width: clamp(24px, 7vw, 34px);
+  }
+}
+
+/* The paper patch is removed; a fixed seal copy fades while panels move. */
+body .envelope-scene .envelope__flap::before {
+  display: none;
+}
+
+body .envelope-scene .seal-ghost {
+  position: fixed;
+  z-index: 24;
+  top: 50%;
+  left: 50%;
+  width: clamp(96px, 10.5vw, 132px);
+  opacity: 0;
+  visibility: hidden;
+  filter: drop-shadow(0 8px 7px rgba(65, 52, 40, .24));
+  transform: translate(-50%, -50%) rotate(-3deg) scale(1);
+  transition: none;
+  pointer-events: none;
+}
+
+body .envelope-scene .seal-ghost.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+body .envelope-scene .seal-ghost.is-visible.is-fading {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .9s cubic-bezier(.4, 0, .2, 1), visibility 0s .9s;
+}
+
+@media (max-width:620px) {
+  body .envelope-scene .seal-ghost {
+    width: clamp(88px, 25vw, 112px);
+  }
+}
+
+/* Only the fixed seal copy may remain visible during opening. */
+body .envelope-scene.is-unsealing .envelope__flap .seal {
+  opacity: 0;
+  visibility: hidden;
+  transition: none;
+}
+
+body .envelope-scene .seal::after {
+  content: none;
+  display: none;
+}
+
+/* Deeper, more dimensional upper flap with a lower rounded point. */
+body .envelope-scene .flap-paper {
+  clip-path: url(#envelope-top-clip);
+  background:
+    radial-gradient(ellipse at 50% 58%, rgba(255, 255, 255, .24), transparent 34%),
+    radial-gradient(ellipse at 50% -8%, rgba(255, 255, 255, .4), transparent 58%),
+    linear-gradient(180deg, #f2e8d9 0%, #dfceb7 62%, #cdb495 100%);
+  box-shadow: inset 0 2px rgba(255, 255, 255, .68);
+  filter:
+    drop-shadow(0 8px 7px rgba(82, 62, 41, .28)) drop-shadow(0 1px 0 rgba(255, 255, 255, .58));
+}
+
+body .envelope-scene .seal {
+  top: 50%;
+}
+
+body .envelope-scene .seal-ghost {
+  top: 50%;
+}
+
+@media (max-width:620px) {
+  body .envelope-scene .flap-paper {
+    clip-path: url(#envelope-top-clip);
+  }
+
+  body .envelope-scene .seal-ghost {
+    top: 50%;
+  }
+}
+
+/* Mobile envelope correction: the envelope is a true full-screen mask. */
+@media (max-width:620px) {
+
+  body .invitation,
+  body .envelope-scene {
+    width: 100vw;
+    height: 100dvh;
+  }
+
+  body .envelope-scene {
+    overflow: hidden;
+  }
+
+  body .envelope-scene .envelope {
+    inset: auto;
+    top: 50%;
+    left: 50%;
+    width: max(100vw, 100dvh);
+    max-width: none;
+    height: max(100vw, 100dvh);
+    aspect-ratio: 1 / 1;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transform: translate(-50%, -50%);
+  }
+
+  body .envelope-scene .flap-paper {
+    clip-path: polygon(0 0, 100% 0, 50% 50%) !important;
+  }
+
+  body .envelope-scene .envelope__pocket--left {
+    z-index: 2;
+    clip-path: polygon(0 0, 51% 50%, 0 100%) !important;
+  }
+
+  body .envelope-scene .envelope__pocket--right {
+    z-index: 2;
+    clip-path: polygon(100% 0, 100% 100%, 49% 50%) !important;
+  }
+
+  body .envelope-scene .envelope__pocket--bottom {
+    z-index: 3;
+    clip-path: polygon(0 100%, 50% 49%, 100% 100%) !important;
+  }
+
+  body .envelope-scene .seal-ghost {
+    top: 50%;
+    width: clamp(112px, 30vw, 140px);
+  }
+
+  body .envelope-scene .seal {
+    width: clamp(112px, 30vw, 140px);
+  }
+
+  .open-button {
+    top: calc(50% + clamp(120px, 20dvh, 175px));
+  }
+}
+
+.is-unsealing .open-button {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-50%) scale(.94);
+  pointer-events: none;
+}
+
+body.show-invitation .invitation {
+  z-index: 10;
+  opacity: 1;
+  visibility: visible;
+  background: transparent;
+  filter: none;
+  transform: none;
+  animation: none;
+  pointer-events: none;
+}
+
+body.show-invitation .reveal-page {
+  z-index: 9;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .48s ease, transform .7s ease, visibility 0s;
+}
+
+body .envelope-scene.is-open .envelope {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+body .envelope-scene.is-open::after {
+  opacity: 0;
+}
+
+body .envelope-scene.is-cleared {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body .envelope-scene .envelope__back {
+  opacity: 1;
+  transition: opacity .18s ease;
+}
+
+body .envelope-scene.is-open .envelope__back {
+  opacity: 0;
+}
+
+.bird-swarm {
+  display: none;
+}
+
+/* Natural handmade-paper texture, clipped independently by every panel. */
+body .envelope-scene .envelope__back::after,
+body .envelope-scene .flap-paper::after,
+body .envelope-scene .envelope__pocket::after {
+  opacity: .34;
+  mix-blend-mode: multiply;
+  background-image: url("assets/paper-texture-crumpled-v1.webp");
+  background-repeat: no-repeat;
+  background-size: 118% 118%;
+}
+
+body .envelope-scene .envelope__back::after {
+  background-position: 50% 50%;
+}
+
+body .envelope-scene .flap-paper::after {
+  background-position: 42% 12%;
+}
+
+body .envelope-scene .envelope__pocket--left::after {
+  background-position: 8% 58%;
+}
+
+body .envelope-scene .envelope__pocket--right::after {
+  background-position: 92% 41%;
+}
+
+body .envelope-scene .envelope__pocket--bottom::after {
+  background-position: 54% 92%;
+}
+
+/* Editorial first slide with realistic side curtains and a paper card. */
+.reveal-page .scene-background {
+  z-index: 0;
+  min-height: 100svh;
+  background: #f5eee4 url("assets/hero-curtains-landscape-v1.webp") center / 100% 100% no-repeat;
+}
+
+.reveal-page .curtain-layer,
+.reveal-page>.chandelier {
+  display: none !important;
+}
+
+.reveal-page .hebrew-mark {
+  z-index: 8;
+  top: clamp(112px, 20svh, 210px);
+  right: auto;
+  left: 50%;
+  color: #766b61;
+  font: 500 clamp(16px, 1.45vw, 22px)/1 "Cormorant Garamond", Georgia, serif;
+  transform: translate(-50%, -7px);
+}
+
+.show-invitation .reveal-page .hebrew-mark {
+  transform: translate(-50%, 0);
+}
+
+.reveal-page .invitation-copy {
+  z-index: 7;
+  top: 52%;
+  left: 50%;
+  width: min(68vw, 820px);
+  min-height: 0;
+  padding: 0;
+  gap: 0;
+  color: #786d63;
+  text-shadow: none;
+  transform: translate(-50%, -50%);
+}
+
+.reveal-page .invitation-copy .hero-kicker {
+  color: #786d63;
+  font: 500 clamp(10px, .9vw, 14px)/1.2 Manrope, sans-serif;
+  letter-spacing: .62em;
+  text-indent: .62em;
+  text-transform: uppercase;
+}
+
+.reveal-page .invitation-copy .hero-subtitle {
+  margin-top: clamp(31px, 5svh, 58px);
+  color: #81766c;
+  font: italic 500 clamp(17px, 1.5vw, 24px)/1 "Cormorant Garamond", Georgia, serif;
+  letter-spacing: .28em;
+  text-indent: .28em;
+  text-transform: none;
+}
+
+.reveal-page .invitation-copy>strong {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: clamp(28px, 4.5svh, 48px) 0 0;
+  color: #74695f;
+  font-style: normal;
+  font-weight: 400;
+  line-height: .82;
+}
+
+.reveal-page .invitation-copy>strong .couple-name {
+  color: inherit;
+  font: 400 clamp(58px, 7vw, 108px)/.82 "Cormorant Garamond", Georgia, serif;
+  letter-spacing: .21em;
+  text-indent: .21em;
+  text-transform: uppercase;
+}
+
+.reveal-page .invitation-copy>strong i {
+  margin: clamp(12px, 2svh, 22px) 0;
+  color: #7c7167;
+  font: 400 clamp(40px, 4vw, 62px)/.7 "Cormorant Garamond", Georgia, serif;
+}
+
+.reveal-page .invitation-copy .hero-divider {
+  width: clamp(44px, 5vw, 72px);
+  height: 1px;
+  margin-top: clamp(32px, 5svh, 58px);
+  background: rgba(126, 111, 94, .38);
+}
+
+.reveal-page .invitation-copy>time {
+  margin-top: clamp(25px, 3.8svh, 42px);
+  color: #796e64;
+  font: 500 clamp(18px, 1.7vw, 27px)/1 Manrope, sans-serif;
+  letter-spacing: .42em;
+  text-indent: .42em;
+}
+
+.reveal-page .invitation-copy .hero-location {
+  margin-top: clamp(20px, 3svh, 34px);
+  color: #786d63;
+  font: 500 clamp(9px, .8vw, 13px)/1.2 Manrope, sans-serif;
+  letter-spacing: .48em;
+  text-indent: .48em;
+  text-transform: uppercase;
+}
+
+.reveal-page .invitation-copy .scroll-cue {
+  margin-top: clamp(25px, 4svh, 45px);
+  color: #8a7d71;
+  font-size: clamp(8px, .7vw, 11px);
+}
+
+@media (max-width:620px) {
+  .reveal-page .scene-background {
+    min-height: 100dvh;
+    background-image: url("assets/hero-curtains-portrait-v1.webp");
+    background-position: center top;
+    background-size: 100% 100dvh;
+  }
+
+  .reveal-page .hebrew-mark {
+    top: 20dvh;
+    right: auto;
+    left: 50%;
+    font-size: 16px;
+  }
+
+  .reveal-page .invitation-copy {
+    top: 54%;
+    width: 76vw;
+  }
+
+  .reveal-page .invitation-copy .hero-kicker {
+    font-size: 9px;
+    letter-spacing: .48em;
+    text-indent: .48em;
+  }
+
+  .reveal-page .invitation-copy .hero-subtitle {
+    margin-top: 4.8dvh;
+    font-size: 15px;
+  }
+
+  .reveal-page .invitation-copy>strong {
+    margin-top: 4.2dvh;
+  }
+
+  .reveal-page .invitation-copy>strong .couple-name {
+    font-size: clamp(42px, 12vw, 52px);
+    letter-spacing: .12em;
+    text-indent: .12em;
+  }
+
+  .reveal-page .invitation-copy>strong i {
+    margin: 1.7dvh 0;
+    font-size: 32px;
+  }
+
+  .reveal-page .invitation-copy .hero-divider {
+    margin-top: 4.2dvh;
+  }
+
+  .reveal-page .invitation-copy>time {
+    margin-top: 3dvh;
+    font-size: 14px;
+    letter-spacing: .34em;
+    text-indent: .34em;
+  }
+
+  .reveal-page .invitation-copy .hero-location {
+    margin-top: 2.5dvh;
+    font-size: 9px;
+    letter-spacing: .4em;
+    text-indent: .4em;
+  }
+
+  .reveal-page .invitation-copy .scroll-cue {
+    margin-top: 3.2dvh;
+    font-size: 9px;
+  }
+}
+
+/* Synchronized four-panel opening immediately after the seal starts fading. */
+body .envelope-scene .envelope__flap,
+body .envelope-scene .envelope__pocket--left,
+body .envelope-scene .envelope__pocket--right,
+body .envelope-scene .envelope__pocket--bottom {
+  transition: transform 2.1s cubic-bezier(.42, 0, .18, 1);
+}
+
+/* Extra depth for the upper and lower paper panels. */
+body .envelope-scene .flap-paper {
+  background:
+    radial-gradient(ellipse at 50% 63%, rgba(94, 68, 40, .13), transparent 34%),
+    radial-gradient(ellipse at 50% -10%, rgba(255, 255, 255, .58), transparent 57%),
+    linear-gradient(180deg, #f5ecdf 0%, #e7d7c2 56%, #cdb291 100%);
+  box-shadow:
+    inset 0 3px 2px rgba(255, 255, 255, .72),
+    inset 0 -20px 28px rgba(89, 63, 36, .13);
+  filter:
+    drop-shadow(0 12px 11px rgba(67, 47, 28, .31)) drop-shadow(0 2px 1px rgba(77, 54, 32, .26));
+}
+
+body .envelope-scene .envelope__pocket--bottom {
+  background:
+    radial-gradient(ellipse at 50% 106%, rgba(255, 255, 255, .4), transparent 55%),
+    radial-gradient(ellipse at 50% 45%, rgba(108, 78, 45, .08), transparent 42%),
+    linear-gradient(180deg, #eadcca 0%, #dbc6aa 57%, #c8ad8b 100%);
+  box-shadow:
+    inset 0 17px 24px rgba(89, 63, 36, .08),
+    inset 0 -3px 2px rgba(255, 255, 255, .36);
+  filter:
+    drop-shadow(0 -10px 10px rgba(67, 47, 28, .27)) drop-shadow(0 -2px 1px rgba(77, 54, 32, .25));
+}
+
+/* Unified typography and ink colors based on the first-slide stationery. */
+:root {
+  --invitation-heading: #74695f;
+  --invitation-text: #786d63;
+  --invitation-muted: #8a7d71;
+}
+
+:is(.invite-letter,
+  .calendar-section,
+  .schedule-section,
+  .dress-code-section,
+  .details-section,
+  .location-section,
+  .guest-form-section,
+  .closing-section) {
+  color: var(--invitation-text);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+:is(.invite-letter,
+  .calendar-section,
+  .schedule-section,
+  .dress-code-section,
+  .details-section,
+  .location-section,
+  .guest-form-section,
+  .closing-section) h2 {
+  color: var(--invitation-heading);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: .055em;
+}
+
+:is(.invite-letter,
+  .calendar-section,
+  .schedule-section,
+  .dress-code-section,
+  .details-section,
+  .location-section,
+  .guest-form-section,
+  .closing-section) :is(p, li, time, label, legend) {
+  color: var(--invitation-text);
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.invite-letter__eyebrow,
+.calendar-section__eyebrow,
+.schedule-section__eyebrow,
+.dress-code__eyebrow,
+.details-card__eyebrow,
+.location-card__eyebrow,
+.guest-form-card__eyebrow {
+  color: var(--invitation-muted);
+  font-family: Manrope, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+
+:is(.calendar-section,
+  .schedule-section,
+  .dress-code-section,
+  .details-section,
+  .location-section,
+  .guest-form-section,
+  .closing-section) :is(small, button, a, input, select, textarea) {
+  color: var(--invitation-text);
+  font-family: Manrope, Arial, sans-serif;
+}
+
+.schedule-list time,
+.schedule-list li>span,
+.calendar__week,
+.calendar__days,
+.dress-code__card p,
+.dress-code__card small,
+.details-card p,
+.location-card p,
+.guest-form-card p,
+.closing-section p,
+.closing-section h2 {
+  color: var(--invitation-text);
+}
+
+/* One continuous background for slides 2–10, matching the invitation slide. */
+.reveal-page>:is(.invite-letter,
+  .calendar-section,
+  .schedule-section,
+  .dress-code-section,
+  .details-section,
+  .location-section,
+  .guest-form-section,
+  .closing-section) {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, .9), transparent 42%),
+    linear-gradient(145deg, #eee9e1, #faf7f1 48%, #e5ddd2);
 }

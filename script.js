@@ -1,7 +1,10 @@
 const scene = document.querySelector('.envelope-scene');
 const openButton = document.querySelector('.open-button');
 const birdSwarm = document.querySelector('.bird-swarm');
-let revealTimer;
+const envelopeSeal = scene.querySelector('.envelope__flap .seal');
+const sealGhost = envelopeSeal.cloneNode(true);
+sealGhost.classList.add('seal-ghost');
+scene.appendChild(sealGhost);
 
 scene.classList.remove('is-open');
 document.body.classList.remove('show-invitation');
@@ -32,10 +35,16 @@ const startReveal = () => {
 };
 
 const openEnvelope = () => {
-  if (scene.classList.contains('is-open')) return;
-  scene.classList.add('is-open');
-  window.clearTimeout(revealTimer);
-  revealTimer = window.setTimeout(startReveal, 1500);
+  if (scene.classList.contains('is-open') || scene.classList.contains('is-unsealing')) return;
+  sealGhost.classList.add('is-visible');
+  void sealGhost.offsetWidth;
+  scene.classList.add('is-unsealing');
+  sealGhost.classList.add('is-fading');
+  window.setTimeout(() => {
+    scene.classList.add('is-open');
+    startReveal();
+    window.setTimeout(() => scene.classList.add('is-cleared'), 2200);
+  }, 650);
 };
 
 openButton.addEventListener('click', openEnvelope);
@@ -142,43 +151,11 @@ letterObserver.observe(inviteLetter);
 
 const revealPage = document.querySelector('.reveal-page');
 const calendarSection = document.querySelector('.calendar-section');
-const calendarDays = calendarSection.querySelector('.calendar__days');
-const calendarHeart = calendarSection.querySelector('.calendar-heart');
-const calendarHeartPath = calendarHeart.querySelector('path');
-const calendarWeddingDay = calendarSection.querySelector('.wedding-day');
-let calendarScrollFrame;
-
-const getCalendarHeartPosition = (cell) => ({
-  x: cell.offsetLeft,
-  y: cell.offsetTop
-});
-
-const updateCalendarHeartProgress = () => {
-  calendarScrollFrame = undefined;
-
-  const sectionRect = calendarSection.getBoundingClientRect();
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const startAt = window.innerHeight * .45;
-  const finishAt = 0;
-  const rawProgress = (startAt - sectionRect.top) / (startAt - finishAt);
-  const progress = prefersReducedMotion ? 1 : Math.min(Math.max(rawProgress, 0), 1);
-  const position = getCalendarHeartPosition(calendarWeddingDay);
-  const scale = .9 + progress * .1;
-
-  calendarHeart.style.transform = `translate3d(${position.x}px, ${position.y}px, 0) scale(${scale})`;
-  calendarHeart.style.opacity = progress > .01 ? '1' : '0';
-  calendarHeartPath.style.strokeDashoffset = String(1 - progress);
-};
-
-const requestCalendarHeartProgress = () => {
-  if (calendarScrollFrame !== undefined) return;
-  calendarScrollFrame = window.requestAnimationFrame(updateCalendarHeartProgress);
-};
 
 const calendarObserver = new IntersectionObserver(([entry]) => {
   if (entry.isIntersecting) {
     calendarSection.classList.add('is-visible');
-    requestCalendarHeartProgress();
+    calendarObserver.disconnect();
   }
 }, { threshold: 0.2 });
 calendarObserver.observe(calendarSection);
@@ -205,7 +182,7 @@ const updateScheduleProgress = () => {
   const firstCenter = firstRect.top + firstRect.height / 2;
   const lastCenter = lastRect.top + lastRect.height / 2;
   const trackLength = Math.max(lastCenter - firstCenter, 0);
-  const viewportMarker = window.innerHeight * .52;
+  const viewportMarker = window.innerHeight * .84;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const travelled = prefersReducedMotion
     ? trackLength
@@ -225,11 +202,8 @@ const requestScheduleProgress = () => {
 };
 
 revealPage.addEventListener('scroll', requestScheduleProgress, { passive: true });
-revealPage.addEventListener('scroll', requestCalendarHeartProgress, { passive: true });
 window.addEventListener('resize', requestScheduleProgress);
-window.addEventListener('resize', requestCalendarHeartProgress);
 requestScheduleProgress();
-requestCalendarHeartProgress();
 
 const dressCodeSection = document.querySelector('.dress-code-section');
 const dressCodeObserver = new IntersectionObserver(([entry]) => {
@@ -351,24 +325,4 @@ guestForm.addEventListener('submit', async (event) => {
     guestSubmitButton.disabled = false;
     guestSubmitButton.textContent = 'Отправить ответ';
   }
-});
-
-document.querySelector('.save-date').addEventListener('click', () => {
-  const eventData = [
-    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Roman and Victoria Wedding//RU',
-    'CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT',
-    'UID:roman-victoria-wedding-20260826@wedding-invitation',
-    'DTSTAMP:20260801T120000Z','DTSTART;VALUE=DATE:20260826','DTEND;VALUE=DATE:20260827',
-    'SUMMARY:Свадьба Романа и Виктории',
-    'DESCRIPTION:Будем счастливы разделить этот день с вами!',
-    'STATUS:CONFIRMED','END:VEVENT','END:VCALENDAR'
-  ].join('\r\n');
-  const url = URL.createObjectURL(new Blob([eventData], { type:'text/calendar;charset=utf-8' }));
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'roman-victoria-wedding-26-08-2026.ics';
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
